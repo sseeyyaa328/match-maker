@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Tennis Match Manager</title>
 
 <style>
@@ -10,7 +10,7 @@
 
 :root{
   --bg:#f4f6f8;
-  --panel:#ffffff;
+  --panel:#fff;
   --text:#17202a;
   --muted:#6b7280;
   --line:#e5e7eb;
@@ -18,12 +18,9 @@
   --accent-dark:#0f4f82;
   --soft:#eef5fb;
   --danger:#c0392b;
-  --green:#16784a;
 }
 
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
   margin:0;
@@ -38,15 +35,11 @@ body{
   margin:24px auto 50px;
 }
 
-header{
-  margin-bottom:20px;
-}
+header{margin-bottom:20px}
 
-header h1{
+h1{
   margin:0;
   font-size:26px;
-  font-weight:700;
-  letter-spacing:-.02em;
 }
 
 header p{
@@ -84,7 +77,6 @@ textarea{
   padding:10px 12px;
   resize:vertical;
   outline:none;
-  background:#fff;
 }
 
 textarea:focus,
@@ -101,16 +93,11 @@ button{
   font:inherit;
   font-weight:600;
   cursor:pointer;
-  transition:.15s;
-}
-
-button:hover{
-  transform:translateY(-1px);
 }
 
 .btn-primary{
   background:var(--accent);
-  color:#fff;
+  color:white;
 }
 
 .btn-primary:hover{
@@ -120,11 +107,6 @@ button:hover{
 .btn-secondary{
   background:#edf1f4;
   color:#26323d;
-}
-
-.btn-danger{
-  background:#fff0ee;
-  color:var(--danger);
 }
 
 .btn-row{
@@ -154,7 +136,6 @@ button:hover{
   border:1px solid var(--line);
   border-radius:7px;
   padding:0 10px;
-  outline:none;
 }
 
 .person{
@@ -165,8 +146,12 @@ button:hover{
   border-bottom:1px solid #edf0f2;
 }
 
-.person:last-child{
-  border-bottom:0;
+.person-name{
+  flex:1;
+  min-width:0;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
 }
 
 .attend{
@@ -176,34 +161,22 @@ button:hover{
   accent-color:var(--accent);
 }
 
-.person-name{
-  flex:1;
-  min-width:0;
-  font-size:14px;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
-}
-
 .gender{
   width:68px;
   height:34px;
+  flex:0 0 68px;
   border:1px solid var(--line);
   border-radius:7px;
-  padding:0 5px;
-  background:#fff;
-  color:var(--text);
-  flex:0 0 68px;
+  background:white;
 }
 
-.person.absent{
-  opacity:.45;
-}
+.absent{opacity:.45}
 
 .team-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
   gap:10px;
+  margin-top:12px;
 }
 
 .team{
@@ -215,14 +188,12 @@ button:hover{
 .team-head{
   background:#f5f7f9;
   padding:9px 11px;
-  font-weight:700;
   display:flex;
   justify-content:space-between;
+  font-weight:700;
 }
 
-.team-body{
-  padding:8px 11px 10px;
-}
+.team-body{padding:8px 11px 10px}
 
 .team-member{
   font-size:13px;
@@ -230,9 +201,8 @@ button:hover{
 }
 
 .team-meta{
-  font-size:11px;
   color:var(--muted);
-  font-weight:500;
+  font-size:11px;
 }
 
 .match-grid{
@@ -244,21 +214,19 @@ button:hover{
   border:1px solid var(--line);
   border-radius:9px;
   padding:12px;
-  background:#fff;
 }
 
 .match-head{
   display:flex;
   justify-content:space-between;
-  align-items:center;
-  margin-bottom:9px;
-  font-size:12px;
   color:var(--muted);
+  font-size:12px;
+  margin-bottom:9px;
 }
 
 .court{
-  font-weight:700;
   color:var(--accent);
+  font-weight:700;
 }
 
 .match-teams{
@@ -269,14 +237,14 @@ button:hover{
 }
 
 .side{
+  background:#f6f8fa;
   border-radius:8px;
   padding:9px;
-  background:#f6f8fa;
 }
 
 .side-title{
-  font-size:11px;
   color:var(--muted);
+  font-size:11px;
   margin-bottom:3px;
 }
 
@@ -316,19 +284,9 @@ button:hover{
 }
 
 .note{
-  font-size:12px;
   color:var(--muted);
+  font-size:12px;
   margin-top:7px;
-}
-
-.badge{
-  display:inline-block;
-  padding:2px 7px;
-  border-radius:999px;
-  background:var(--soft);
-  color:var(--accent);
-  font-size:11px;
-  font-weight:700;
 }
 
 @media(max-width:560px){
@@ -339,12 +297,9 @@ button:hover{
 
   .card{
     padding:14px;
-    border-radius:10px;
   }
 
-  header h1{
-    font-size:22px;
-  }
+  h1{font-size:22px}
 
   .settings{
     grid-template-columns:1fr 1fr;
@@ -352,10 +307,6 @@ button:hover{
 
   .settings .field:last-child{
     grid-column:span 2;
-  }
-
-  .person{
-    gap:4px;
   }
 
   .gender{
@@ -367,9 +318,7 @@ button:hover{
     grid-template-columns:1fr;
   }
 
-  .vs{
-    text-align:center;
-  }
+  .vs{text-align:center}
 }
 </style>
 </head>
@@ -383,473 +332,657 @@ button:hover{
   <p>ダブルスの組み合わせ・チーム分け・出場回数をまとめて管理</p>
 </header>
 
-<!-- 出席者 -->
+<!-- 参加者 -->
 <section class="card">
-  <div class="card-title">参加者</div>
 
-  <textarea id="names"
-    placeholder="名前を1行ずつ入力してください&#10;例：&#10;田中&#10;山田&#10;佐藤&#10;鈴木"></textarea>
+<div class="card-title">参加者</div>
 
-  <div class="btn-row">
-    <button class="btn-primary" onclick="createPeople()">出欠欄を作成</button>
-  </div>
+<textarea id="names"
+placeholder="名前を1行ずつ入力してください
+例：
+田中
+山田
+佐藤
+鈴木"></textarea>
 
-  <div id="people"></div>
+<div class="btn-row">
+<button class="btn-primary" onclick="createPeople()">出欠欄を作成</button>
+</div>
+
+<div id="people"></div>
+
 </section>
+
 
 <!-- チーム -->
 <section class="card">
-  <div class="card-title">チーム分け</div>
 
-  <div class="settings">
-    <div class="field">
-      <label>チーム数</label>
-      <input id="teamCount" type="number" min="1" value="4">
-    </div>
-  </div>
+<div class="card-title">チーム分け</div>
 
-  <div class="btn-row">
-    <button class="btn-primary" onclick="makeTeams()">チームを作成</button>
-    <button class="btn-secondary" onclick="makeTeams()">再シャッフル</button>
-  </div>
+<div class="settings">
 
-  <div class="note">
-    チーム人数を先に均等化し、その中で男女比ができるだけ均等になるようにします。
-  </div>
+<div class="field">
+<label>チーム数</label>
+<input id="teamCount" type="number" min="1" value="4">
+</div>
 
-  <div id="teams" class="team-grid" style="margin-top:12px;"></div>
+</div>
+
+
+<div style="margin-top:12px">
+
+<label style="font-size:12px;color:var(--muted);font-weight:600">
+同じチームNG
+</label>
+
+<textarea
+id="teamNG"
+style="min-height:80px;margin-top:5px"
+placeholder="同じチームにしたくない組み合わせを1行ずつ入力
+例：
+田中,山田
+佐藤,鈴木"></textarea>
+
+<div class="note">
+※ここで指定した人同士は同じチームになりません。
+試合で対戦することは可能です。
+</div>
+
+</div>
+
+
+<div class="btn-row">
+<button class="btn-primary" onclick="makeTeams()">チームを作成</button>
+<button class="btn-secondary" onclick="makeTeams()">再シャッフル</button>
+</div>
+
+<div class="team-grid" id="teams"></div>
+
 </section>
+
 
 <!-- 試合設定 -->
 <section class="card">
-  <div class="card-title">試合設定</div>
 
-  <div class="settings">
+<div class="card-title">試合設定</div>
 
-    <div class="field">
-      <label>コート数</label>
-      <input id="courtCount" type="number" min="1" value="2">
-    </div>
+<div class="settings">
 
-    <div class="field">
-      <label>試合数</label>
-      <input id="matchCount" type="number" min="1" value="10">
-    </div>
+<div class="field">
+<label>コート数</label>
+<input id="courtCount" type="number" min="1" value="2">
+</div>
 
-    <div class="field">
-      <label>チーム数</label>
-      <input id="matchTeamCount" type="number" min="2" value="4">
-    </div>
+<div class="field">
+<label>試合数</label>
+<input id="matchCount" type="number" min="1" value="10">
+</div>
 
-  </div>
+</div>
 
-  <div style="margin-top:13px;">
-    <label style="font-size:12px;color:var(--muted);font-weight:600;">
-      ペアNG
-    </label>
 
-    <textarea id="pairNG"
-      style="min-height:80px;margin-top:5px;"
-      placeholder="同じペアにしたくない組み合わせを1行ずつ入力&#10;例：&#10;田中,山田&#10;佐藤,鈴木"></textarea>
-  </div>
+<div style="margin-top:13px">
 
-  <div style="margin-top:10px;">
-    <label style="display:flex;align-items:center;gap:7px;font-size:13px;">
-      <input id="avoidMMFF" type="checkbox" checked>
-      男男 vs 女女をできるだけ避ける
-    </label>
-  </div>
+<label style="font-size:12px;color:var(--muted);font-weight:600">
+ペアNG
+</label>
 
-  <div class="btn-row">
-    <button class="btn-primary" onclick="generateMatches()">試合を作成</button>
-  </div>
+<textarea
+id="pairNG"
+style="min-height:80px;margin-top:5px"
+placeholder="同じペアにしたくない組み合わせ
+例：
+田中,山田
+佐藤,鈴木"></textarea>
+
+</div>
+
+
+<div style="margin-top:10px">
+
+<label style="display:flex;align-items:center;gap:7px;font-size:13px">
+
+<input id="avoidMMFF" type="checkbox" checked>
+
+男男 vs 女女をできるだけ避ける
+
+</label>
+
+</div>
+
+
+<div class="btn-row">
+
+<button class="btn-primary" onclick="generateMatches()">
+試合を作成
+</button>
+
+</div>
+
 </section>
 
-<!-- 試合結果 -->
+
+<!-- 試合 -->
 <section class="card">
-  <div class="card-title">
-    試合一覧
-  </div>
 
-  <div id="matches" class="match-grid">
-    <div class="empty">まだ試合が作成されていません。</div>
-  </div>
+<div class="card-title">試合一覧</div>
+
+<div id="matches" class="match-grid">
+
+<div class="empty">
+まだ試合が作成されていません。
+</div>
+
+</div>
+
 </section>
+
 
 <!-- 出場回数 -->
 <section class="card">
-  <div class="card-title">
-    出場回数
-  </div>
 
-  <div id="appearance">
-    <div class="empty">試合を作成すると表示されます。</div>
-  </div>
+<div class="card-title">出場回数</div>
+
+<div id="appearance">
+
+<div class="empty">
+試合を作成すると表示されます。
+</div>
+
+</div>
+
 </section>
 
 </div>
 
+
 <script>
 
-let people = [];
-let teams = [];
-let matches = [];
+let people=[];
+let teams=[];
+let matches=[];
 
-const $ = id => document.getElementById(id);
+
+const $=id=>document.getElementById(id);
+
+
+/* =========================
+   共通
+========================= */
 
 function shuffle(arr){
-  const a = [...arr];
+
+  const a=[...arr];
 
   for(let i=a.length-1;i>0;i--){
-    const j = Math.floor(Math.random()*(i+1));
-    [a[i],a[j]] = [a[j],a[i]];
+
+    const j=Math.floor(Math.random()*(i+1));
+
+    [a[i],a[j]]=[a[j],a[i]];
   }
 
   return a;
 }
 
+
+function escapeHtml(str){
+
+  return String(str)
+  .replaceAll("&","&amp;")
+  .replaceAll("<","&lt;")
+  .replaceAll(">","&gt;")
+  .replaceAll('"',"&quot;")
+  .replaceAll("'","&#039;");
+}
+
+
+function pairKey(a,b){
+
+  return [a,b].sort().join("|||");
+}
+
+
+function parseNG(text){
+
+  const set=new Set();
+
+  text
+  .split(/\n/)
+  .map(x=>x.trim())
+  .filter(Boolean)
+  .forEach(line=>{
+
+    const p=line
+      .split(/[,\t、 ]+/)
+      .map(x=>x.trim())
+      .filter(Boolean);
+
+    if(p.length>=2){
+      set.add(pairKey(p[0],p[1]));
+    }
+  });
+
+  return set;
+}
+
+
+/* =========================
+   参加者
+========================= */
+
 function createPeople(){
 
-  const raw = $("names").value
+  const names=$("names").value
     .split(/\n/)
-    .map(x => x.trim())
+    .map(x=>x.trim())
     .filter(Boolean);
 
-  people = raw.map((name,i)=>({
-    id:i,
-    name:name,
+  people=names.map((name,id)=>({
+
+    id,
+    name,
     present:true,
     gender:""
+
   }));
 
   renderPeople();
 }
 
+
 function renderPeople(){
 
-  const box = $("people");
-  box.innerHTML = "";
+  const box=$("people");
+
+  box.innerHTML="";
 
   if(!people.length){
-    box.innerHTML =
-      '<div class="empty">名前を入力してください。</div>';
+
+    box.innerHTML=
+      `<div class="empty">名前を入力してください。</div>`;
+
     return;
   }
 
-  const controls = document.createElement("div");
 
-  controls.className = "btn-row";
-  controls.style.marginBottom = "7px";
+  const buttons=document.createElement("div");
 
-  controls.innerHTML = `
-    <button class="btn-secondary" onclick="setAllAttendance(true)">
-      全員出席
-    </button>
-    <button class="btn-secondary" onclick="setAllAttendance(false)">
-      全員欠席
-    </button>
+  buttons.className="btn-row";
+
+  buttons.innerHTML=`
+
+  <button class="btn-secondary"
+    onclick="setAttendance(true)">
+    全員出席
+  </button>
+
+  <button class="btn-secondary"
+    onclick="setAttendance(false)">
+    全員欠席
+  </button>
+
   `;
 
-  box.appendChild(controls);
+  box.appendChild(buttons);
+
 
   people.forEach(p=>{
 
-    const row = document.createElement("div");
+    const row=document.createElement("div");
 
-    row.className = "person" + (p.present ? "" : " absent");
+    row.className=
+      "person"+
+      (p.present?"":" absent");
 
-    row.innerHTML = `
-      <input
-        class="attend"
-        type="checkbox"
-        ${p.present ? "checked" : ""}
-      >
 
-      <div class="person-name">${escapeHtml(p.name)}</div>
+    row.innerHTML=`
 
-      <select class="gender">
-        <option value="">性別</option>
-        <option value="M" ${p.gender==="M" ? "selected":""}>男性</option>
-        <option value="F" ${p.gender==="F" ? "selected":""}>女性</option>
-      </select>
+    <input
+      class="attend"
+      type="checkbox"
+      ${p.present?"checked":""}
+    >
+
+    <div class="person-name">
+      ${escapeHtml(p.name)}
+    </div>
+
+    <select class="gender">
+
+      <option value="">性別</option>
+
+      <option value="M"
+        ${p.gender==="M"?"selected":""}>
+        男性
+      </option>
+
+      <option value="F"
+        ${p.gender==="F"?"selected":""}>
+        女性
+      </option>
+
+    </select>
+
     `;
 
-    const check = row.querySelector(".attend");
-    const select = row.querySelector(".gender");
 
-    check.addEventListener("change",()=>{
-      p.present = check.checked;
-      row.classList.toggle("absent",!p.present);
-    });
+    const check=row.querySelector(".attend");
 
-    select.addEventListener("change",()=>{
-      p.gender = select.value;
-    });
+    const gender=row.querySelector(".gender");
+
+
+    check.onchange=()=>{
+
+      p.present=check.checked;
+
+      row.classList.toggle(
+        "absent",
+        !p.present
+      );
+
+    };
+
+
+    gender.onchange=()=>{
+
+      p.gender=gender.value;
+
+    };
+
 
     box.appendChild(row);
+
   });
+
 }
 
-function setAllAttendance(value){
+
+function setAttendance(value){
 
   people.forEach(p=>p.present=value);
 
   renderPeople();
 }
 
+
 function presentPeople(){
 
   return people.filter(p=>p.present);
 }
 
-function genders(){
 
-  const g={};
-
-  people.forEach(p=>{
-    g[p.id]=p.gender;
-  });
-
-  return g;
-}
-
-function escapeHtml(str){
-
-  return String(str)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
-}
-
-
-/* =========================================
+/* =========================
    チーム分け
-   ========================================= */
+========================= */
 
 function makeTeams(){
 
-  const p = presentPeople();
+  const p=presentPeople();
 
-  let n = Math.max(
+  const n=Math.max(
     1,
-    Math.min(
-      26,
-      parseInt($("teamCount").value) || 1
-    )
+    parseInt($("teamCount").value)||1
   );
 
-  if(p.length < n){
 
-    alert("出席者数よりチーム数を多くすることはできません。");
+  if(p.length<n){
+
+    alert(
+      "出席者数よりチーム数を多くすることはできません。"
+    );
+
     return;
   }
 
-  /*
-    ここが今回の重要部分。
 
-    まず人数を完全に決定する。
+  const ng=parseNG($("teamNG").value);
 
-    例：
-    39人 ÷ 4チーム
-
-    base = 9
-    extra = 3
-
-    → 10,10,10,9
-
-    男女比は、この人数が決まったあとに
-    できるだけ均等になるよう調整する。
-  */
-
-  const base = Math.floor(p.length / n);
-  const extra = p.length % n;
-
-  let targetSizes =
-    Array.from(
-      {length:n},
-      (_,i)=>base + (i<extra ? 1 : 0)
-    );
 
   /*
-    毎回同じチームだけ10人になるのを防ぐため、
-    余分な1人を入れるチームをランダム化。
+    まずチーム人数を固定。
+
+    39人 / 4チーム
+    → 10 / 10 / 10 / 9
   */
 
-  const order = shuffle(
+  const base=Math.floor(p.length/n);
+
+  const extra=p.length%n;
+
+
+  let sizes=Array(n).fill(base);
+
+  shuffle(
     Array.from({length:n},(_,i)=>i)
-  );
+  )
+  .slice(0,extra)
+  .forEach(i=>{
+    sizes[i]++;
+  });
 
-  const shuffledSizes = Array(n).fill(base);
 
-  for(let i=0;i<extra;i++){
-    shuffledSizes[order[i]]++;
-  }
+  let best=null;
 
-  targetSizes = shuffledSizes;
+  let bestScore=Infinity;
 
-  let best = null;
-  let bestScore = Infinity;
 
   /*
-    何回もランダムに作って、
-    「人数は固定したまま」
-    男女比が良い組み合わせを探す。
+    何度も試して最も条件の良いものを採用。
   */
 
-  for(let trial=0;trial<800;trial++){
+  for(let trial=0;trial<1500;trial++){
 
-    const shuffled = shuffle(p);
+    const teamsTemp=
+      sizes.map(size=>({
 
-    /*
-      男性・女性を軽く混ぜる。
-      性別未設定の人は後から扱う。
-    */
-
-    const male = shuffle(
-      shuffled.filter(x=>x.gender==="M")
-    );
-
-    const female = shuffle(
-      shuffled.filter(x=>x.gender==="F")
-    );
-
-    const unknown = shuffle(
-      shuffled.filter(x=>x.gender!=="M" && x.gender!=="F")
-    );
-
-    /*
-      性別ごとに並べたうえで交互に配置する候補を作る。
-    */
-
-    let pool = [];
-
-    let mi=0;
-    let fi=0;
-
-    while(mi<male.length || fi<female.length){
-
-      if(mi<male.length){
-        pool.push(male[mi++]);
-      }
-
-      if(fi<female.length){
-        pool.push(female[fi++]);
-      }
-    }
-
-    pool = shuffle(
-      pool.concat(unknown)
-    );
-
-    const candidate =
-      targetSizes.map(size=>({
+        size,
         members:[],
         m:0,
-        f:0,
-        size:size
+        f:0
+
       }));
 
+
+    const order=shuffle(p);
+
+
     /*
-      各人を、
-      まだ空きがあり、
-      男女差が大きくなりにくいチームへ入れる。
+      NG関係が多い人から処理する。
     */
 
-    pool.forEach(person=>{
+    order.sort((a,b)=>{
 
-      const available =
-        candidate
-          .map((team,index)=>({team,index}))
-          .filter(x=>
-            x.team.members.length < x.team.size
-          );
+      const degreeA=
+        p.filter(x=>
+          x.id!==a.id &&
+          ng.has(pairKey(a.name,x.name))
+        ).length;
 
-      let bestOptions = [];
-      let minScore = Infinity;
+      const degreeB=
+        p.filter(x=>
+          x.id!==b.id &&
+          ng.has(pairKey(b.name,x.name))
+        ).length;
 
-      available.forEach(x=>{
+      return degreeB-degreeA;
+    });
 
-        const team = x.team;
 
-        const nextM =
-          team.m + (person.gender==="M" ? 1 : 0);
+    let failed=false;
 
-        const nextF =
-          team.f + (person.gender==="F" ? 1 : 0);
 
-        const imbalance =
-          Math.abs(nextM-nextF);
+    for(const person of order){
+
+      let candidates=[];
+
+
+      teamsTemp.forEach((team,index)=>{
+
+        if(team.members.length>=team.size){
+          return;
+        }
+
 
         /*
-          性別差を評価。
-          ただし人数は絶対にtargetSizeを超えない。
+          既に同じチームにNG相手がいないか
         */
 
-        const score =
-          imbalance * 10 +
-          Math.random()*5;
+        const conflict=
+          team.members.some(other=>
+            ng.has(
+              pairKey(
+                person.name,
+                other.name
+              )
+            )
+          );
 
-        if(score < minScore){
 
-          minScore = score;
-          bestOptions = [x];
+        if(conflict)return;
 
-        }else if(
-          Math.abs(score-minScore)<0.01
-        ){
 
-          bestOptions.push(x);
-        }
+        const nextM=
+          team.m+
+          (person.gender==="M"?1:0);
+
+        const nextF=
+          team.f+
+          (person.gender==="F"?1:0);
+
+
+        const genderBalance=
+          Math.abs(nextM-nextF);
+
+
+        candidates.push({
+
+          index,
+
+          score:
+            genderBalance*20+
+            Math.random()*10
+
+        });
+
       });
 
-      const chosen =
-        bestOptions[
-          Math.floor(
-            Math.random()*bestOptions.length
-          )
-        ];
 
-      const team = chosen.team;
+      if(!candidates.length){
+
+        failed=true;
+        break;
+      }
+
+
+      candidates.sort(
+        (a,b)=>a.score-b.score
+      );
+
+
+      const selected=candidates[0];
+
+      const team=
+        teamsTemp[selected.index];
+
 
       team.members.push(person);
 
-      if(person.gender==="M") team.m++;
-      if(person.gender==="F") team.f++;
-    });
+
+      if(person.gender==="M")
+        team.m++;
+
+      if(person.gender==="F")
+        team.f++;
+
+    }
+
+
+    if(failed)continue;
+
 
     /*
-      全チームの男女差を評価
+      最終評価
     */
 
-    let score = 0;
+    let score=0;
 
-    candidate.forEach(team=>{
 
-      score += Math.abs(team.m-team.f);
+    teamsTemp.forEach(team=>{
 
-      /*
-        性別未設定が多い場合も、
-        多少のランダム性を残す。
-      */
+      score+=
+        Math.abs(team.m-team.f)*10;
 
-      score += Math.random()*0.2;
     });
 
-    if(score < bestScore){
 
-      bestScore = score;
-      best = candidate.map(x=>({
-        members:[...x.members],
-        m:x.m,
-        f:x.f,
-        size:x.size
+    /*
+      NG違反があれば大きなペナルティ
+    */
+
+    teamsTemp.forEach(team=>{
+
+      for(let i=0;i<team.members.length;i++){
+
+        for(
+          let j=i+1;
+          j<team.members.length;
+          j++
+        ){
+
+          if(
+            ng.has(
+              pairKey(
+                team.members[i].name,
+                team.members[j].name
+              )
+            )
+          ){
+
+            score+=100000;
+
+          }
+
+        }
+
+      }
+
+    });
+
+
+    score+=Math.random();
+
+
+    if(score<bestScore){
+
+      bestScore=score;
+
+      best=teamsTemp.map(t=>({
+
+        members:[...t.members],
+
+        m:t.m,
+
+        f:t.f
+
       }));
+
     }
+
   }
 
-  teams = best.map((team,index)=>({
+
+  if(!best){
+
+    alert(
+      "指定された同じチームNGをすべて満たすチーム分けができませんでした。\n\n"+
+      "NGの組み合わせを減らすか、チーム数を増やしてください。"
+    );
+
+    return;
+  }
+
+
+  teams=best.map((team,index)=>({
 
     name:String.fromCharCode(65+index),
 
@@ -858,24 +991,21 @@ function makeTeams(){
     m:team.m,
 
     f:team.f
+
   }));
 
+
   renderTeams();
+
 }
+
 
 function renderTeams(){
 
-  const box = $("teams");
+  const box=$("teams");
 
   box.innerHTML="";
 
-  if(!teams.length){
-
-    box.innerHTML =
-      '<div class="empty">まだチームが作成されていません。</div>';
-
-    return;
-  }
 
   teams.forEach(team=>{
 
@@ -883,264 +1013,421 @@ function renderTeams(){
 
     div.className="team";
 
+
     div.innerHTML=`
-      <div class="team-head">
-        <span>${team.name}チーム</span>
-        <span class="team-meta">
-          ${team.members.length}人
-        </span>
+
+    <div class="team-head">
+
+      <span>${team.name}チーム</span>
+
+      <span class="team-meta">
+        ${team.members.length}人
+      </span>
+
+    </div>
+
+
+    <div class="team-body">
+
+      <div class="team-meta"
+        style="margin-bottom:5px">
+
+        男性 ${team.m}
+        /
+        女性 ${team.f}
+
       </div>
 
-      <div class="team-body">
 
-        <div class="team-meta" style="margin-bottom:5px;">
-          男性 ${team.m} / 女性 ${team.f}
+      ${team.members.map(p=>`
+
+        <div class="team-member">
+          ${escapeHtml(p.name)}
         </div>
 
-        ${team.members.map(p=>
-          `<div class="team-member">
-            ${escapeHtml(p.name)}
-          </div>`
-        ).join("")}
+      `).join("")}
 
-      </div>
+    </div>
+
     `;
 
+
     box.appendChild(div);
-  });
-}
 
-
-/* =========================================
-   ペアNG
-   ========================================= */
-
-function parsePairNG(){
-
-  const lines =
-    $("pairNG").value
-      .split(/\n/)
-      .map(x=>x.trim())
-      .filter(Boolean);
-
-  const ng = new Set();
-
-  lines.forEach(line=>{
-
-    const parts =
-      line
-        .split(/[,\t、 ]+/)
-        .map(x=>x.trim())
-        .filter(Boolean);
-
-    if(parts.length>=2){
-
-      const a = parts[0];
-      const b = parts[1];
-
-      ng.add(pairKey(a,b));
-    }
   });
 
-  return ng;
-}
-
-function pairKey(a,b){
-
-  return [a,b].sort().join("|||");
-}
-
-function isNG(a,b,ng){
-
-  return ng.has(
-    pairKey(a.name,b.name)
-  );
 }
 
 
-/* =========================================
+/* =========================
    試合生成
-   ========================================= */
+========================= */
 
 function generateMatches(){
 
-  const p = presentPeople();
+  const p=presentPeople();
 
-  if(p.length < 4){
 
-    alert("ダブルスには最低4人の出席者が必要です。");
+  const courts=Math.max(
+    1,
+    parseInt($("courtCount").value)||1
+  );
+
+
+  const rounds=Math.max(
+    1,
+    parseInt($("matchCount").value)||1
+  );
+
+
+  if(p.length<4){
+
+    alert(
+      "ダブルスには最低4人必要です。"
+    );
+
     return;
   }
 
-  const courtCount =
-    Math.max(
-      1,
-      parseInt($("courtCount").value)||1
+
+  if(p.length<courts*4){
+
+    alert(
+      `現在の出席者は${p.length}人です。\n`+
+      `${courts}コートを同時に使うには${courts*4}人必要です。`
     );
 
-  const matchCount =
-    Math.max(
-      1,
-      parseInt($("matchCount").value)||1
-    );
+    return;
+  }
 
-  const ng = parsePairNG();
 
-  const avoidMMFF =
+  const pairNG=
+    parseNG($("pairNG").value);
+
+
+  const avoidMMFF=
     $("avoidMMFF").checked;
 
+
   /*
-    出場回数
+    出場回数が最も均等になる結果を探す
   */
 
-  const appearances={};
+  let best=null;
 
-  p.forEach(x=>{
-    appearances[x.id]=0;
+  let bestScore=Infinity;
+
+
+  /*
+    ランダムに何百通りも作って比較。
+  */
+
+  for(let attempt=0;attempt<500;attempt++){
+
+    const result=
+      buildSchedule(
+        p,
+        courts,
+        rounds,
+        pairNG,
+        avoidMMFF
+      );
+
+
+    if(!result)continue;
+
+
+    /*
+      出場回数の最大値・最小値
+    */
+
+    const counts=
+      Object.values(result.counts);
+
+
+    const max=Math.max(...counts);
+
+    const min=Math.min(...counts);
+
+
+    /*
+      均等化を最優先。
+
+      最大-最小を非常に重く評価。
+    */
+
+    let score=
+      (max-min)*10000;
+
+
+    /*
+      平均からのズレも評価。
+    */
+
+    const avg=
+      counts.reduce(
+        (a,b)=>a+b,
+        0
+      )/counts.length;
+
+
+    counts.forEach(c=>{
+
+      score+=
+        Math.abs(c-avg)*20;
+
+    });
+
+
+    /*
+      同じペアの回数を評価
+    */
+
+    score+=
+      result.repeatPairs*30;
+
+
+    score+=Math.random()*10;
+
+
+    if(score<bestScore){
+
+      bestScore=score;
+
+      best=result;
+
+    }
+
+  }
+
+
+  if(!best){
+
+    alert(
+      "条件を満たす試合を作成できませんでした。"
+    );
+
+    return;
+  }
+
+
+  matches=best.matches;
+
+
+  renderMatches();
+
+  renderAppearances(
+    best.counts
+  );
+
+}
+
+
+/* =========================
+   スケジュール作成
+========================= */
+
+function buildSchedule(
+  players,
+  courts,
+  rounds,
+  pairNG,
+  avoidMMFF
+){
+
+  const counts={};
+
+  players.forEach(p=>{
+    counts[p.id]=0;
   });
 
-  /*
-    ペア履歴
-  */
 
-  const pairHistory=new Set();
+  const pairHistory=new Map();
 
-  matches=[];
+  const matches=[];
 
-  for(let round=0;round<matchCount;round++){
 
-    const courtMatches=[];
+  for(
+    let round=1;
+    round<=rounds;
+    round++
+  ){
 
     /*
       出場回数が少ない人を優先。
-      同数の場合はランダム。
+
+      ランダム性を少し残す。
     */
 
-    let available =
-      shuffle(p).sort(
-        (a,b)=>
-          appearances[a.id]-
-          appearances[b.id]
-      );
+    let pool=shuffle(players)
+      .sort((a,b)=>{
 
-    /*
-      最大試行回数。
-    */
+        const diff=
+          counts[a.id]-
+          counts[b.id];
 
-    let selected=null;
+        return diff+
+          (Math.random()-.5)*0.8;
 
-    for(let trial=0;trial<600;trial++){
+      });
 
-      const candidates =
-        shuffle(available);
 
-      /*
-        出場回数の少ない人を中心に候補を作る
-      */
+    const used=new Set();
 
-      const pool =
-        candidates
-          .sort(
-            (a,b)=>
-              appearances[a.id]-
-              appearances[b.id]
-          )
-          .slice(
-            0,
-            Math.min(
-              candidates.length,
-              courtCount*4+6
-            )
-          );
+
+    for(
+      let court=1;
+      court<=courts;
+      court++
+    ){
 
       /*
-        ランダムに4人ずつ組む。
+        このコートの4人を探す。
       */
 
-      const shuffled =
-        shuffle(pool);
+      let bestGroup=null;
 
-      const used=new Set();
+      let bestGroupScore=Infinity;
 
-      const result=[];
+
+      /*
+        何度も候補を作る。
+      */
 
       for(
-        let i=0;
-        i+3<shuffled.length &&
-        result.length<courtCount;
-        i++
+        let trial=0;
+        trial<250;
+        trial++
       ){
 
-        const group =
-          shuffled.slice(i,i+4);
+        const candidates=
+          shuffle(pool)
+          .filter(p=>
+            !used.has(p.id)
+          );
 
-        if(group.length<4) continue;
 
-        const key =
-          group.map(x=>x.id).sort().join("-");
+        if(candidates.length<4)
+          continue;
+
+
+        const group=
+          candidates.slice(0,4);
+
 
         /*
-          同じ人が同ラウンドに複数回出ない
+          出場回数が少ない人を優先するので、
+          候補を評価。
         */
 
-        if(group.some(x=>used.has(x.id))){
-          continue;
-        }
+        let score=0;
+
+
+        group.forEach(p=>{
+
+          score+=
+            counts[p.id]*20;
+
+        });
+
 
         /*
-          4人から2ペアを試す。
+          男女比。
+        */
+
+        const m=
+          group.filter(
+            p=>p.gender==="M"
+          ).length;
+
+        const f=
+          group.filter(
+            p=>p.gender==="F"
+          ).length;
+
+
+        /*
+          ペアの3パターンを試す。
         */
 
         const pairings=[
+
           [
             [group[0],group[1]],
             [group[2],group[3]]
           ],
+
           [
             [group[0],group[2]],
             [group[1],group[3]]
           ],
+
           [
             [group[0],group[3]],
             [group[1],group[2]]
           ]
+
         ];
 
-        let bestPairing=null;
-        let bestPairScore=Infinity;
 
-        pairings.forEach(pairing=>{
+        for(const pairing of pairings){
 
-          const [p1,p2]=pairing;
+          const a=pairing[0];
+
+          const b=pairing[1];
+
 
           if(
-            isNG(p1[0],p1[1],ng) ||
-            isNG(p2[0],p2[1],ng)
-          ){
-            return;
-          }
+            pairNG.has(
+              pairKey(
+                a[0].name,
+                a[1].name
+              )
+            )
+          )continue;
 
-          let score=0;
+
+          if(
+            pairNG.has(
+              pairKey(
+                b[0].name,
+                b[1].name
+              )
+            )
+          )continue;
+
+
+          let pairScore=score;
+
 
           /*
             同じペアを避ける
           */
 
-          if(
-            pairHistory.has(
-              pairKey(p1[0].name,p1[1].name)
-            )
-          ){
-            score+=30;
-          }
+          const keyA=
+            pairKey(
+              a[0].name,
+              a[1].name
+            );
 
-          if(
-            pairHistory.has(
-              pairKey(p2[0].name,p2[1].name)
-            )
-          ){
-            score+=30;
-          }
+          const keyB=
+            pairKey(
+              b[0].name,
+              b[1].name
+            );
+
+
+          const repeatA=
+            pairHistory.get(keyA)||0;
+
+          const repeatB=
+            pairHistory.get(keyB)||0;
+
+
+          pairScore+=
+            repeatA*100+
+            repeatB*100;
+
 
           /*
             男男 vs 女女を避ける
@@ -1148,128 +1435,152 @@ function generateMatches(){
 
           if(avoidMMFF){
 
-            const a =
-              p1.every(x=>x.gender==="M");
+            const aa=
+              a.every(
+                p=>p.gender==="M"
+              );
 
-            const b =
-              p1.every(x=>x.gender==="F");
+            const af=
+              a.every(
+                p=>p.gender==="F"
+              );
 
-            const c =
-              p2.every(x=>x.gender==="M");
+            const ba=
+              b.every(
+                p=>p.gender==="M"
+              );
 
-            const d =
-              p2.every(x=>x.gender==="F");
+            const bf=
+              b.every(
+                p=>p.gender==="F"
+              );
 
-            if((a&&d)||(b&&c)){
-              score+=100;
+
+            if(
+              (aa&&bf)||
+              (af&&ba)
+            ){
+
+              pairScore+=500;
+
             }
+
           }
 
-          /*
-            出場回数差
-          */
 
-          const avg =
-            group.reduce(
-              (sum,x)=>sum+appearances[x.id],
-              0
-            )/4;
+          pairScore+=
+            Math.random()*20;
 
-          group.forEach(x=>{
-            score +=
-              Math.abs(
-                appearances[x.id]-avg
-              )*4;
-          });
 
-          score+=Math.random()*10;
+          if(pairScore<bestGroupScore){
 
-          if(score<bestPairScore){
+            bestGroupScore=pairScore;
 
-            bestPairScore=score;
-            bestPairing=pairing;
+            bestGroup={
+              players:group,
+              a,
+              b
+            };
+
           }
-        });
 
-        if(!bestPairing){
-          continue;
         }
 
-        result.push({
-          players:group,
-          pairing:bestPairing
-        });
-
-        group.forEach(x=>used.add(x.id));
       }
+
+
+      if(!bestGroup){
+
+        return null;
+      }
+
 
       /*
-        できるだけコート数を埋める。
+        同時進行なので、
+        このラウンドでは使った人を
+        usedに入れる。
       */
 
-      if(result.length===courtCount){
+      bestGroup.players.forEach(p=>{
 
-        selected=result;
-        break;
-      }
+        used.add(p.id);
 
-      if(
-        !selected ||
-        result.length>selected.length
-      ){
-        selected=result;
-      }
-    }
+        counts[p.id]++;
 
-    if(!selected) break;
+      });
 
-    selected.forEach(m=>{
 
-      const [sideA,sideB]=m.pairing;
+      const keyA=
+        pairKey(
+          bestGroup.a[0].name,
+          bestGroup.a[1].name
+        );
+
+      const keyB=
+        pairKey(
+          bestGroup.b[0].name,
+          bestGroup.b[1].name
+        );
+
+
+      pairHistory.set(
+        keyA,
+        (pairHistory.get(keyA)||0)+1
+      );
+
+      pairHistory.set(
+        keyB,
+        (pairHistory.get(keyB)||0)+1
+      );
+
 
       matches.push({
 
-        round:round+1,
+        round,
 
-        court:
-          courtMatches.length+1,
+        court,
 
-        a:sideA,
+        a:bestGroup.a,
 
-        b:sideB
+        b:bestGroup.b
 
       });
 
-      m.players.forEach(x=>{
-        appearances[x.id]++;
-      });
+    }
 
-      pairHistory.add(
-        pairKey(
-          sideA[0].name,
-          sideA[1].name
-        )
-      );
-
-      pairHistory.add(
-        pairKey(
-          sideB[0].name,
-          sideB[1].name
-        )
-      );
-
-      courtMatches.push(m);
-    });
   }
 
-  renderMatches();
-  renderAppearances(appearances);
+
+  /*
+    同じペアが何回繰り返されたか
+  */
+
+  let repeatPairs=0;
+
+  pairHistory.forEach(v=>{
+
+    if(v>1)
+      repeatPairs+=v-1;
+
+  });
+
+
+  return{
+
+    matches,
+
+    counts,
+
+    repeatPairs
+
+  };
+
 }
 
 
-/* =========================================
+/* =========================
    試合表示
-   ========================================= */
+========================= */
 
 function renderMatches(){
 
@@ -1277,125 +1588,179 @@ function renderMatches(){
 
   box.innerHTML="";
 
-  if(!matches.length){
 
-    box.innerHTML =
-      '<div class="empty">試合を作成できませんでした。</div>';
-
-    return;
-  }
-
-  matches.forEach((m,index)=>{
+  matches.forEach(m=>{
 
     const div=document.createElement("div");
 
     div.className="match";
 
+
     div.innerHTML=`
 
-      <div class="match-head">
-        <span>
-          第${m.round}試合
-        </span>
+    <div class="match-head">
 
-        <span class="court">
-          Court ${m.court}
-        </span>
-      </div>
+      <span>
+        第${m.round}試合
+      </span>
 
-      <div class="match-teams">
+      <span class="court">
+        Court ${m.court}
+      </span>
 
-        <div class="side">
+    </div>
 
-          <div class="side-title">
-            TEAM A
-          </div>
 
-          <div class="side-player">
-            ${escapeHtml(m.a[0].name)}
-          </div>
+    <div class="match-teams">
 
-          <div class="side-player">
-            ${escapeHtml(m.a[1].name)}
-          </div>
+      <div class="side">
 
+        <div class="side-title">
+          TEAM A
         </div>
 
-        <div class="vs">
-          VS
+        <div class="side-player">
+          ${escapeHtml(m.a[0].name)}
         </div>
 
-        <div class="side">
-
-          <div class="side-title">
-            TEAM B
-          </div>
-
-          <div class="side-player">
-            ${escapeHtml(m.b[0].name)}
-          </div>
-
-          <div class="side-player">
-            ${escapeHtml(m.b[1].name)}
-          </div>
-
+        <div class="side-player">
+          ${escapeHtml(m.a[1].name)}
         </div>
 
       </div>
+
+
+      <div class="vs">
+        VS
+      </div>
+
+
+      <div class="side">
+
+        <div class="side-title">
+          TEAM B
+        </div>
+
+        <div class="side-player">
+          ${escapeHtml(m.b[0].name)}
+        </div>
+
+        <div class="side-player">
+          ${escapeHtml(m.b[1].name)}
+        </div>
+
+      </div>
+
+    </div>
+
     `;
 
+
     box.appendChild(div);
+
   });
+
 }
 
 
-/* =========================================
+/* =========================
    出場回数
-   ========================================= */
+========================= */
 
 function renderAppearances(counts){
 
   const box=$("appearance");
 
-  const sorted =
+
+  const list=
     presentPeople()
-      .sort(
-        (a,b)=>
-          counts[b.id]-
-          counts[a.id]
+    .map(p=>({
+
+      person:p,
+
+      count:counts[p.id]||0
+
+    }))
+    .sort((a,b)=>{
+
+      if(a.count!==b.count)
+        return a.count-b.count;
+
+      return a.person.name.localeCompare(
+        b.person.name,
+        "ja"
       );
+
+    });
+
+
+  const values=
+    list.map(x=>x.count);
+
+
+  const min=
+    Math.min(...values);
+
+  const max=
+    Math.max(...values);
+
 
   box.innerHTML=`
 
-    <table class="appearance-table">
+  <div class="note"
+    style="margin-bottom:10px">
 
-      <thead>
+    出場回数：
+    最少 ${min}回 ／
+    最多 ${max}回
+
+    ${max-min<=1
+      ? " → ほぼ均等です。"
+      : ""
+    }
+
+  </div>
+
+
+  <table class="appearance-table">
+
+    <thead>
+
+      <tr>
+
+        <th>名前</th>
+
+        <th>出場回数</th>
+
+      </tr>
+
+    </thead>
+
+
+    <tbody>
+
+      ${list.map(x=>`
+
         <tr>
-          <th>名前</th>
-          <th>出場</th>
+
+          <td>
+            ${escapeHtml(x.person.name)}
+          </td>
+
+          <td>
+            ${x.count}回
+          </td>
+
         </tr>
-      </thead>
 
-      <tbody>
+      `).join("")}
 
-        ${sorted.map(p=>`
+    </tbody>
 
-          <tr>
-            <td>
-              ${escapeHtml(p.name)}
-            </td>
+  </table>
 
-            <td>
-              ${counts[p.id]}回
-            </td>
-          </tr>
-
-        `).join("")}
-
-      </tbody>
-
-    </table>
   `;
+
 }
 
 </script>
