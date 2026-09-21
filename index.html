@@ -63,9 +63,7 @@ header p{
   margin-bottom:13px;
 }
 
-textarea,
-input,
-select{
+textarea,input,select{
   font:inherit;
 }
 
@@ -77,13 +75,20 @@ textarea{
   padding:10px 12px;
   resize:vertical;
   outline:none;
+  background:#fff;
 }
 
-textarea:focus,
-input:focus,
-select:focus{
+textarea:focus,input:focus,select:focus{
   border-color:var(--accent);
   box-shadow:0 0 0 3px rgba(23,105,170,.1);
+}
+
+input[type="number"]{
+  width:100%;
+  height:40px;
+  border:1px solid var(--line);
+  border-radius:7px;
+  padding:0 10px;
 }
 
 button{
@@ -109,11 +114,22 @@ button{
   color:#26323d;
 }
 
+.btn-danger{
+  background:#fff0ee;
+  color:var(--danger);
+}
+
 .btn-row{
   display:flex;
   gap:8px;
   flex-wrap:wrap;
   margin-top:10px;
+}
+
+.save-status{
+  font-size:12px;
+  color:var(--muted);
+  margin-top:8px;
 }
 
 .settings{
@@ -128,14 +144,6 @@ button{
   color:var(--muted);
   margin-bottom:5px;
   font-weight:600;
-}
-
-.field input{
-  width:100%;
-  height:40px;
-  border:1px solid var(--line);
-  border-radius:7px;
-  padding:0 10px;
 }
 
 .person{
@@ -170,7 +178,9 @@ button{
   background:white;
 }
 
-.absent{opacity:.45}
+.absent{
+  opacity:.45;
+}
 
 .team-grid{
   display:grid;
@@ -193,7 +203,9 @@ button{
   font-weight:700;
 }
 
-.team-body{padding:8px 11px 10px}
+.team-body{
+  padding:8px 11px 10px;
+}
 
 .team-member{
   font-size:13px;
@@ -290,6 +302,7 @@ button{
 }
 
 @media(max-width:560px){
+
   .container{
     width:calc(100% - 14px);
     margin-top:14px;
@@ -299,7 +312,9 @@ button{
     padding:14px;
   }
 
-  h1{font-size:22px}
+  h1{
+    font-size:22px;
+  }
 
   .settings{
     grid-template-columns:1fr 1fr;
@@ -318,7 +333,9 @@ button{
     grid-template-columns:1fr;
   }
 
-  .vs{text-align:center}
+  .vs{
+    text-align:center;
+  }
 }
 </style>
 </head>
@@ -332,24 +349,58 @@ button{
   <p>ダブルスの組み合わせ・チーム分け・出場回数をまとめて管理</p>
 </header>
 
+
+<!-- 保存 -->
+<section class="card">
+
+  <div class="card-title">データ保存</div>
+
+  <div class="btn-row">
+
+    <button class="btn-primary" onclick="saveData()">
+      保存
+    </button>
+
+    <button class="btn-secondary" onclick="loadData()">
+      復元
+    </button>
+
+    <button class="btn-danger" onclick="deleteSavedData()">
+      保存データを削除
+    </button>
+
+  </div>
+
+  <div id="saveStatus" class="save-status">
+    自動保存：待機中
+  </div>
+
+</section>
+
+
 <!-- 参加者 -->
 <section class="card">
 
-<div class="card-title">参加者</div>
+  <div class="card-title">参加者</div>
 
-<textarea id="names"
-placeholder="名前を1行ずつ入力してください
+  <textarea id="names"
+    placeholder="名前を1行ずつ入力してください
 例：
 田中
 山田
 佐藤
 鈴木"></textarea>
 
-<div class="btn-row">
-<button class="btn-primary" onclick="createPeople()">出欠欄を作成</button>
-</div>
+  <div class="btn-row">
 
-<div id="people"></div>
+    <button class="btn-primary"
+      onclick="createPeople()">
+      出欠欄を作成
+    </button>
+
+  </div>
+
+  <div id="people"></div>
 
 </section>
 
@@ -357,46 +408,70 @@ placeholder="名前を1行ずつ入力してください
 <!-- チーム -->
 <section class="card">
 
-<div class="card-title">チーム分け</div>
+  <div class="card-title">チーム分け</div>
 
-<div class="settings">
+  <div class="settings">
 
-<div class="field">
-<label>チーム数</label>
-<input id="teamCount" type="number" min="1" value="4">
-</div>
+    <div class="field">
 
-</div>
+      <label>チーム数</label>
+
+      <input
+        id="teamCount"
+        type="number"
+        min="1"
+        value="4">
+
+    </div>
+
+  </div>
 
 
-<div style="margin-top:12px">
+  <div style="margin-top:12px">
 
-<label style="font-size:12px;color:var(--muted);font-weight:600">
-同じチームNG
-</label>
+    <label
+      style="font-size:12px;color:var(--muted);font-weight:600">
 
-<textarea
-id="teamNG"
-style="min-height:80px;margin-top:5px"
-placeholder="同じチームにしたくない組み合わせを1行ずつ入力
+      同じチームNG
+
+    </label>
+
+    <textarea
+      id="teamNG"
+      style="min-height:80px;margin-top:5px"
+      placeholder="同じチームにしたくない組み合わせ
 例：
 田中,山田
 佐藤,鈴木"></textarea>
 
-<div class="note">
-※ここで指定した人同士は同じチームになりません。
-試合で対戦することは可能です。
-</div>
+    <div class="note">
+      ※指定した2人は同じチームになりません。
+    </div>
 
-</div>
+  </div>
 
 
-<div class="btn-row">
-<button class="btn-primary" onclick="makeTeams()">チームを作成</button>
-<button class="btn-secondary" onclick="makeTeams()">再シャッフル</button>
-</div>
+  <div class="btn-row">
 
-<div class="team-grid" id="teams"></div>
+    <button
+      class="btn-primary"
+      onclick="makeTeams()">
+
+      チームを作成
+
+    </button>
+
+    <button
+      class="btn-secondary"
+      onclick="makeTeams()">
+
+      再シャッフル
+
+    </button>
+
+  </div>
+
+  <div id="teams" class="team-grid"></div>
 
 </section>
 
@@ -404,60 +479,85 @@ placeholder="同じチームにしたくない組み合わせを1行ずつ入力
 <!-- 試合設定 -->
 <section class="card">
 
-<div class="card-title">試合設定</div>
+  <div class="card-title">試合設定</div>
 
-<div class="settings">
+  <div class="settings">
 
-<div class="field">
-<label>コート数</label>
-<input id="courtCount" type="number" min="1" value="2">
-</div>
+    <div class="field">
 
-<div class="field">
-<label>試合数</label>
-<input id="matchCount" type="number" min="1" value="10">
-</div>
+      <label>コート数</label>
 
-</div>
+      <input
+        id="courtCount"
+        type="number"
+        min="1"
+        value="2">
+
+    </div>
+
+    <div class="field">
+
+      <label>試合数</label>
+
+      <input
+        id="matchCount"
+        type="number"
+        min="1"
+        value="10">
+
+    </div>
+
+  </div>
 
 
-<div style="margin-top:13px">
+  <div style="margin-top:13px">
 
-<label style="font-size:12px;color:var(--muted);font-weight:600">
-ペアNG
-</label>
+    <label
+      style="font-size:12px;color:var(--muted);font-weight:600">
 
-<textarea
-id="pairNG"
-style="min-height:80px;margin-top:5px"
-placeholder="同じペアにしたくない組み合わせ
+      ペアNG
+
+    </label>
+
+    <textarea
+      id="pairNG"
+      style="min-height:80px;margin-top:5px"
+      placeholder="同じペアにしたくない組み合わせ
 例：
 田中,山田
 佐藤,鈴木"></textarea>
 
-</div>
+  </div>
 
 
-<div style="margin-top:10px">
+  <div style="margin-top:10px">
 
-<label style="display:flex;align-items:center;gap:7px;font-size:13px">
+    <label
+      style="display:flex;align-items:center;gap:7px;font-size:13px">
 
-<input id="avoidMMFF" type="checkbox" checked>
+      <input
+        id="avoidMMFF"
+        type="checkbox"
+        checked>
 
-男男 vs 女女をできるだけ避ける
+      男男 vs 女女をできるだけ避ける
 
-</label>
+    </label>
 
-</div>
+  </div>
 
 
-<div class="btn-row">
+  <div class="btn-row">
 
-<button class="btn-primary" onclick="generateMatches()">
-試合を作成
-</button>
+    <button
+      class="btn-primary"
+      onclick="generateMatches()">
 
-</div>
+      試合を作成
+
+    </button>
+
+  </div>
 
 </section>
 
@@ -465,15 +565,17 @@ placeholder="同じペアにしたくない組み合わせ
 <!-- 試合 -->
 <section class="card">
 
-<div class="card-title">試合一覧</div>
+  <div class="card-title">
+    試合一覧
+  </div>
 
-<div id="matches" class="match-grid">
+  <div id="matches" class="match-grid">
 
-<div class="empty">
-まだ試合が作成されていません。
-</div>
+    <div class="empty">
+      まだ試合が作成されていません。
+    </div>
 
-</div>
+  </div>
 
 </section>
 
@@ -481,15 +583,17 @@ placeholder="同じペアにしたくない組み合わせ
 <!-- 出場回数 -->
 <section class="card">
 
-<div class="card-title">出場回数</div>
+  <div class="card-title">
+    出場回数
+  </div>
 
-<div id="appearance">
+  <div id="appearance">
 
-<div class="empty">
-試合を作成すると表示されます。
-</div>
+    <div class="empty">
+      試合を作成すると表示されます。
+    </div>
 
-</div>
+  </div>
 
 </section>
 
@@ -503,12 +607,12 @@ let teams=[];
 let matches=[];
 
 
-const $=id=>document.getElementById(id);
-
-
 /* =========================
    共通
 ========================= */
+
+const $=id=>document.getElementById(id);
+
 
 function shuffle(arr){
 
@@ -516,9 +620,12 @@ function shuffle(arr){
 
   for(let i=a.length-1;i>0;i--){
 
-    const j=Math.floor(Math.random()*(i+1));
+    const j=Math.floor(
+      Math.random()*(i+1)
+    );
 
     [a[i],a[j]]=[a[j],a[i]];
+
   }
 
   return a;
@@ -528,17 +635,19 @@ function shuffle(arr){
 function escapeHtml(str){
 
   return String(str)
-  .replaceAll("&","&amp;")
-  .replaceAll("<","&lt;")
-  .replaceAll(">","&gt;")
-  .replaceAll('"',"&quot;")
-  .replaceAll("'","&#039;");
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
 }
 
 
 function pairKey(a,b){
 
   return [a,b].sort().join("|||");
+
 }
 
 
@@ -547,23 +656,313 @@ function parseNG(text){
   const set=new Set();
 
   text
-  .split(/\n/)
-  .map(x=>x.trim())
-  .filter(Boolean)
-  .forEach(line=>{
+    .split(/\n/)
+    .map(x=>x.trim())
+    .filter(Boolean)
+    .forEach(line=>{
 
-    const p=line
-      .split(/[,\t、 ]+/)
-      .map(x=>x.trim())
-      .filter(Boolean);
+      const p=line
+        .split(/[,\t、 ]+/)
+        .map(x=>x.trim())
+        .filter(Boolean);
 
-    if(p.length>=2){
-      set.add(pairKey(p[0],p[1]));
-    }
-  });
+      if(p.length>=2){
+
+        set.add(
+          pairKey(p[0],p[1])
+        );
+
+      }
+
+    });
 
   return set;
+
 }
+
+
+/* =========================
+   保存機能
+========================= */
+
+const STORAGE_KEY=
+  "tennis_match_manager_data_v3";
+
+
+function collectData(){
+
+  return {
+
+    names:$("names").value,
+
+    people:people,
+
+    teamCount:$("teamCount").value,
+
+    teamNG:$("teamNG").value,
+
+    courtCount:$("courtCount").value,
+
+    matchCount:$("matchCount").value,
+
+    pairNG:$("pairNG").value,
+
+    avoidMMFF:$("avoidMMFF").checked,
+
+    teams:teams,
+
+    matches:matches
+
+  };
+
+}
+
+
+function saveData(showMessage=true){
+
+  try{
+
+    const data=collectData();
+
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify(data)
+    );
+
+    if(showMessage){
+
+      $("saveStatus").textContent=
+        "保存しました ✓";
+
+    }
+
+  }catch(e){
+
+    $("saveStatus").textContent=
+      "保存できませんでした";
+
+  }
+
+}
+
+
+function loadData(){
+
+  try{
+
+    const raw=
+      localStorage.getItem(
+        STORAGE_KEY
+      );
+
+
+    if(!raw){
+
+      alert(
+        "保存されたデータがありません。"
+      );
+
+      return;
+
+    }
+
+
+    const data=
+      JSON.parse(raw);
+
+
+    $("names").value=
+      data.names||"";
+
+
+    people=
+      Array.isArray(data.people)
+        ? data.people
+        : [];
+
+
+    $("teamCount").value=
+      data.teamCount||4;
+
+
+    $("teamNG").value=
+      data.teamNG||"";
+
+
+    $("courtCount").value=
+      data.courtCount||2;
+
+
+    $("matchCount").value=
+      data.matchCount||10;
+
+
+    $("pairNG").value=
+      data.pairNG||"";
+
+
+    $("avoidMMFF").checked=
+      data.avoidMMFF!==false;
+
+
+    teams=
+      Array.isArray(data.teams)
+        ? data.teams
+        : [];
+
+
+    matches=
+      Array.isArray(data.matches)
+        ? data.matches
+        : [];
+
+
+    renderPeople();
+
+    renderTeams();
+
+    renderMatches();
+
+
+    if(people.length){
+
+      /*
+        保存されている試合から
+        出場回数を再計算
+      */
+
+      const counts={};
+
+      people.forEach(p=>{
+        counts[p.id]=0;
+      });
+
+
+      matches.forEach(m=>{
+
+        [
+          ...m.a,
+          ...m.b
+        ].forEach(p=>{
+
+          if(counts[p.id]!==undefined){
+
+            counts[p.id]++;
+
+          }
+
+        });
+
+      });
+
+
+      if(matches.length){
+
+        renderAppearances(
+          counts
+        );
+
+      }
+
+    }
+
+
+    $("saveStatus").textContent=
+      "保存データを復元しました ✓";
+
+
+  }catch(e){
+
+    alert(
+      "保存データの読み込みに失敗しました。"
+    );
+
+  }
+
+}
+
+
+function deleteSavedData(){
+
+  const ok=
+    confirm(
+      "保存されているデータを削除しますか？"
+    );
+
+
+  if(!ok)return;
+
+
+  localStorage.removeItem(
+    STORAGE_KEY
+  );
+
+
+  $("saveStatus").textContent=
+    "保存データを削除しました";
+
+
+}
+
+
+/*
+  入力変更時に自動保存
+*/
+
+let saveTimer=null;
+
+
+function autoSave(){
+
+  clearTimeout(saveTimer);
+
+
+  saveTimer=setTimeout(()=>{
+
+    saveData(false);
+
+    $("saveStatus").textContent=
+      "自動保存済み ✓";
+
+  },400);
+
+}
+
+
+document.addEventListener(
+  "input",
+  e=>{
+
+    if(
+      e.target.matches(
+        "input,textarea,select"
+      )
+    ){
+
+      autoSave();
+
+    }
+
+  }
+);
+
+
+document.addEventListener(
+  "change",
+  e=>{
+
+    if(
+      e.target.matches(
+        "input,textarea,select"
+      )
+    ){
+
+      autoSave();
+
+    }
+
+  }
+);
 
 
 /* =========================
@@ -572,21 +971,31 @@ function parseNG(text){
 
 function createPeople(){
 
-  const names=$("names").value
-    .split(/\n/)
-    .map(x=>x.trim())
-    .filter(Boolean);
+  const names=
+    $("names").value
+      .split(/\n/)
+      .map(x=>x.trim())
+      .filter(Boolean);
 
-  people=names.map((name,id)=>({
 
-    id,
-    name,
-    present:true,
-    gender:""
+  people=
+    names.map((name,id)=>({
 
-  }));
+      id,
+
+      name,
+
+      present:true,
+
+      gender:""
+
+    }));
+
 
   renderPeople();
+
+  autoSave();
+
 }
 
 
@@ -596,39 +1005,52 @@ function renderPeople(){
 
   box.innerHTML="";
 
+
   if(!people.length){
 
     box.innerHTML=
-      `<div class="empty">名前を入力してください。</div>`;
+      `<div class="empty">
+        名前を入力してください。
+      </div>`;
 
     return;
+
   }
 
 
-  const buttons=document.createElement("div");
+  const buttons=
+    document.createElement("div");
 
-  buttons.className="btn-row";
+
+  buttons.className=
+    "btn-row";
+
 
   buttons.innerHTML=`
 
-  <button class="btn-secondary"
-    onclick="setAttendance(true)">
-    全員出席
-  </button>
+    <button
+      class="btn-secondary"
+      onclick="setAttendance(true)">
+      全員出席
+    </button>
 
-  <button class="btn-secondary"
-    onclick="setAttendance(false)">
-    全員欠席
-  </button>
+    <button
+      class="btn-secondary"
+      onclick="setAttendance(false)">
+      全員欠席
+    </button>
 
   `;
+
 
   box.appendChild(buttons);
 
 
   people.forEach(p=>{
 
-    const row=document.createElement("div");
+    const row=
+      document.createElement("div");
+
 
     row.className=
       "person"+
@@ -637,55 +1059,68 @@ function renderPeople(){
 
     row.innerHTML=`
 
-    <input
-      class="attend"
-      type="checkbox"
-      ${p.present?"checked":""}
-    >
+      <input
+        class="attend"
+        type="checkbox"
+        ${p.present?"checked":""}>
 
-    <div class="person-name">
-      ${escapeHtml(p.name)}
-    </div>
+      <div class="person-name">
+        ${escapeHtml(p.name)}
+      </div>
 
-    <select class="gender">
+      <select class="gender">
 
-      <option value="">性別</option>
+        <option value="">
+          性別
+        </option>
 
-      <option value="M"
-        ${p.gender==="M"?"selected":""}>
-        男性
-      </option>
+        <option value="M"
+          ${p.gender==="M"?"selected":""}>
+          男性
+        </option>
 
-      <option value="F"
-        ${p.gender==="F"?"selected":""}>
-        女性
-      </option>
+        <option value="F"
+          ${p.gender==="F"?"selected":""}>
+          女性
+        </option>
 
-    </select>
+      </select>
 
     `;
 
 
-    const check=row.querySelector(".attend");
+    const check=
+      row.querySelector(".attend");
 
-    const gender=row.querySelector(".gender");
+
+    const gender=
+      row.querySelector(".gender");
 
 
     check.onchange=()=>{
 
-      p.present=check.checked;
+      p.present=
+        check.checked;
+
 
       row.classList.toggle(
         "absent",
         !p.present
       );
 
+
+      autoSave();
+
     };
 
 
     gender.onchange=()=>{
 
-      p.gender=gender.value;
+      p.gender=
+        gender.value;
+
+
+      autoSave();
 
     };
 
@@ -699,15 +1134,23 @@ function renderPeople(){
 
 function setAttendance(value){
 
-  people.forEach(p=>p.present=value);
+  people.forEach(
+    p=>p.present=value
+  );
 
   renderPeople();
+
+  autoSave();
+
 }
 
 
 function presentPeople(){
 
-  return people.filter(p=>p.present);
+  return people.filter(
+    p=>p.present
+  );
+
 }
 
 
@@ -717,12 +1160,17 @@ function presentPeople(){
 
 function makeTeams(){
 
-  const p=presentPeople();
+  const p=
+    presentPeople();
 
-  const n=Math.max(
-    1,
-    parseInt($("teamCount").value)||1
-  );
+
+  const n=
+    Math.max(
+      1,
+      parseInt(
+        $("teamCount").value
+      )||1
+    );
 
 
   if(p.length<n){
@@ -732,28 +1180,40 @@ function makeTeams(){
     );
 
     return;
+
   }
 
 
-  const ng=parseNG($("teamNG").value);
+  const ng=
+    parseNG(
+      $("teamNG").value
+    );
 
 
   /*
-    まずチーム人数を固定。
+    人数を先に完全固定。
 
     39人 / 4チーム
     → 10 / 10 / 10 / 9
   */
 
-  const base=Math.floor(p.length/n);
+  const base=
+    Math.floor(p.length/n);
 
-  const extra=p.length%n;
+
+  const extra=
+    p.length%n;
 
 
-  let sizes=Array(n).fill(base);
+  let sizes=
+    Array(n).fill(base);
+
 
   shuffle(
-    Array.from({length:n},(_,i)=>i)
+    Array.from(
+      {length:n},
+      (_,i)=>i
+    )
   )
   .slice(0,extra)
   .forEach(i=>{
@@ -766,45 +1226,62 @@ function makeTeams(){
   let bestScore=Infinity;
 
 
-  /*
-    何度も試して最も条件の良いものを採用。
-  */
+  for(
+    let trial=0;
+    trial<1500;
+    trial++
+  ){
 
-  for(let trial=0;trial<1500;trial++){
-
-    const teamsTemp=
+    const temp=
       sizes.map(size=>({
 
         size,
+
         members:[],
+
         m:0,
+
         f:0
 
       }));
 
 
-    const order=shuffle(p);
+    const order=
+      shuffle(p);
 
 
     /*
-      NG関係が多い人から処理する。
+      NG相手が多い人を先に配置
     */
 
     order.sort((a,b)=>{
 
-      const degreeA=
+      const da=
         p.filter(x=>
           x.id!==a.id &&
-          ng.has(pairKey(a.name,x.name))
+          ng.has(
+            pairKey(
+              a.name,
+              x.name
+            )
+          )
         ).length;
 
-      const degreeB=
+
+      const db=
         p.filter(x=>
           x.id!==b.id &&
-          ng.has(pairKey(b.name,x.name))
+          ng.has(
+            pairKey(
+              b.name,
+              x.name
+            )
+          )
         ).length;
 
-      return degreeB-degreeA;
+
+      return db-da;
+
     });
 
 
@@ -813,76 +1290,82 @@ function makeTeams(){
 
     for(const person of order){
 
-      let candidates=[];
+      const candidates=[];
 
 
-      teamsTemp.forEach((team,index)=>{
+      temp.forEach(
+        (team,index)=>{
 
-        if(team.members.length>=team.size){
-          return;
+          if(
+            team.members.length>=
+            team.size
+          ){
+            return;
+          }
+
+
+          const conflict=
+            team.members.some(
+              other=>
+                ng.has(
+                  pairKey(
+                    person.name,
+                    other.name
+                  )
+                )
+            );
+
+
+          if(conflict)return;
+
+
+          const nextM=
+            team.m+
+            (person.gender==="M"?1:0);
+
+
+          const nextF=
+            team.f+
+            (person.gender==="F"?1:0);
+
+
+          candidates.push({
+
+            index,
+
+            score:
+              Math.abs(
+                nextM-nextF
+              )*20+
+              Math.random()*10
+
+          });
+
         }
-
-
-        /*
-          既に同じチームにNG相手がいないか
-        */
-
-        const conflict=
-          team.members.some(other=>
-            ng.has(
-              pairKey(
-                person.name,
-                other.name
-              )
-            )
-          );
-
-
-        if(conflict)return;
-
-
-        const nextM=
-          team.m+
-          (person.gender==="M"?1:0);
-
-        const nextF=
-          team.f+
-          (person.gender==="F"?1:0);
-
-
-        const genderBalance=
-          Math.abs(nextM-nextF);
-
-
-        candidates.push({
-
-          index,
-
-          score:
-            genderBalance*20+
-            Math.random()*10
-
-        });
-
-      });
+      );
 
 
       if(!candidates.length){
 
         failed=true;
+
         break;
+
       }
 
 
       candidates.sort(
-        (a,b)=>a.score-b.score
+        (a,b)=>
+          a.score-b.score
       );
 
 
-      const selected=candidates[0];
+      const selected=
+        candidates[0];
+
 
       const team=
-        teamsTemp[selected.index];
+        temp[selected.index];
 
 
       team.members.push(person);
@@ -890,6 +1373,7 @@ function makeTeams(){
 
       if(person.gender==="M")
         team.m++;
+
 
       if(person.gender==="F")
         team.f++;
@@ -900,28 +1384,22 @@ function makeTeams(){
     if(failed)continue;
 
 
-    /*
-      最終評価
-    */
-
     let score=0;
 
 
-    teamsTemp.forEach(team=>{
+    temp.forEach(team=>{
 
       score+=
-        Math.abs(team.m-team.f)*10;
+        Math.abs(
+          team.m-team.f
+        )*10;
 
-    });
 
-
-    /*
-      NG違反があれば大きなペナルティ
-    */
-
-    teamsTemp.forEach(team=>{
-
-      for(let i=0;i<team.members.length;i++){
+      for(
+        let i=0;
+        i<team.members.length;
+        i++
+      ){
 
         for(
           let j=i+1;
@@ -956,15 +1434,16 @@ function makeTeams(){
 
       bestScore=score;
 
-      best=teamsTemp.map(t=>({
+      best=
+        temp.map(t=>({
 
-        members:[...t.members],
+          members:[...t.members],
 
-        m:t.m,
+          m:t.m,
 
-        f:t.f
+          f:t.f
 
-      }));
+        }));
 
     }
 
@@ -974,28 +1453,36 @@ function makeTeams(){
   if(!best){
 
     alert(
-      "指定された同じチームNGをすべて満たすチーム分けができませんでした。\n\n"+
-      "NGの組み合わせを減らすか、チーム数を増やしてください。"
+      "指定したNG条件ではチーム分けできませんでした。\n\n"+
+      "NGを減らすか、チーム数を変更してください。"
     );
 
     return;
+
   }
 
 
-  teams=best.map((team,index)=>({
+  teams=
+    best.map((team,index)=>({
 
-    name:String.fromCharCode(65+index),
+      name:
+        String.fromCharCode(
+          65+index
+        ),
 
-    members:team.members,
+      members:
+        team.members,
 
-    m:team.m,
+      m:team.m,
 
-    f:team.f
+      f:team.f
 
-  }));
+    }));
 
 
   renderTeams();
+
+  autoSave();
 
 }
 
@@ -1009,45 +1496,50 @@ function renderTeams(){
 
   teams.forEach(team=>{
 
-    const div=document.createElement("div");
+    const div=
+      document.createElement("div");
+
 
     div.className="team";
 
 
     div.innerHTML=`
 
-    <div class="team-head">
+      <div class="team-head">
 
-      <span>${team.name}チーム</span>
+        <span>
+          ${team.name}チーム
+        </span>
 
-      <span class="team-meta">
-        ${team.members.length}人
-      </span>
-
-    </div>
-
-
-    <div class="team-body">
-
-      <div class="team-meta"
-        style="margin-bottom:5px">
-
-        男性 ${team.m}
-        /
-        女性 ${team.f}
+        <span class="team-meta">
+          ${team.members.length}人
+        </span>
 
       </div>
 
 
-      ${team.members.map(p=>`
+      <div class="team-body">
 
-        <div class="team-member">
-          ${escapeHtml(p.name)}
+        <div
+          class="team-meta"
+          style="margin-bottom:5px">
+
+          男性 ${team.m}
+          /
+          女性 ${team.f}
+
         </div>
 
-      `).join("")}
 
-    </div>
+        ${team.members.map(p=>`
+
+          <div class="team-member">
+            ${escapeHtml(p.name)}
+          </div>
+
+        `).join("")}
+
+      </div>
 
     `;
 
@@ -1060,24 +1552,31 @@ function renderTeams(){
 
 
 /* =========================
-   試合生成
+   試合
 ========================= */
 
 function generateMatches(){
 
-  const p=presentPeople();
+  const p=
+    presentPeople();
 
 
-  const courts=Math.max(
-    1,
-    parseInt($("courtCount").value)||1
-  );
+  const courts=
+    Math.max(
+      1,
+      parseInt(
+        $("courtCount").value
+      )||1
+    );
 
 
-  const rounds=Math.max(
-    1,
-    parseInt($("matchCount").value)||1
-  );
+  const rounds=
+    Math.max(
+      1,
+      parseInt(
+        $("matchCount").value
+      )||1
+    );
 
 
   if(p.length<4){
@@ -1087,31 +1586,32 @@ function generateMatches(){
     );
 
     return;
+
   }
 
 
   if(p.length<courts*4){
 
     alert(
-      `現在の出席者は${p.length}人です。\n`+
-      `${courts}コートを同時に使うには${courts*4}人必要です。`
+      `出席者は${p.length}人です。\n`+
+      `${courts}コート同時進行には`+
+      `${courts*4}人必要です。`
     );
 
     return;
+
   }
 
 
   const pairNG=
-    parseNG($("pairNG").value);
+    parseNG(
+      $("pairNG").value
+    );
 
 
   const avoidMMFF=
     $("avoidMMFF").checked;
 
-
-  /*
-    出場回数が最も均等になる結果を探す
-  */
 
   let best=null;
 
@@ -1119,10 +1619,15 @@ function generateMatches(){
 
 
   /*
-    ランダムに何百通りも作って比較。
+    500通り作って、
+    出場回数が最も均等なものを採用
   */
 
-  for(let attempt=0;attempt<500;attempt++){
+  for(
+    let attempt=0;
+    attempt<500;
+    attempt++
+  ){
 
     const result=
       buildSchedule(
@@ -1137,32 +1642,23 @@ function generateMatches(){
     if(!result)continue;
 
 
-    /*
-      出場回数の最大値・最小値
-    */
-
     const counts=
-      Object.values(result.counts);
+      Object.values(
+        result.counts
+      );
 
 
-    const max=Math.max(...counts);
+    const max=
+      Math.max(...counts);
 
-    const min=Math.min(...counts);
 
+    const min=
+      Math.min(...counts);
 
-    /*
-      均等化を最優先。
-
-      最大-最小を非常に重く評価。
-    */
 
     let score=
       (max-min)*10000;
 
-
-    /*
-      平均からのズレも評価。
-    */
 
     const avg=
       counts.reduce(
@@ -1179,15 +1675,12 @@ function generateMatches(){
     });
 
 
-    /*
-      同じペアの回数を評価
-    */
-
     score+=
       result.repeatPairs*30;
 
 
-    score+=Math.random()*10;
+    score+=
+      Math.random()*10;
 
 
     if(score<bestScore){
@@ -1208,10 +1701,12 @@ function generateMatches(){
     );
 
     return;
+
   }
 
 
-  matches=best.matches;
+  matches=
+    best.matches;
 
 
   renderMatches();
@@ -1220,11 +1715,14 @@ function generateMatches(){
     best.counts
   );
 
+
+  autoSave();
+
 }
 
 
 /* =========================
-   スケジュール作成
+   試合スケジュール
 ========================= */
 
 function buildSchedule(
@@ -1237,14 +1735,17 @@ function buildSchedule(
 
   const counts={};
 
+
   players.forEach(p=>{
     counts[p.id]=0;
   });
 
 
-  const pairHistory=new Map();
+  const pairHistory=
+    new Map();
 
-  const matches=[];
+
+  const result=[];
 
 
   for(
@@ -1253,26 +1754,21 @@ function buildSchedule(
     round++
   ){
 
-    /*
-      出場回数が少ない人を優先。
-
-      ランダム性を少し残す。
-    */
-
-    let pool=shuffle(players)
+    let pool=
+      shuffle(players)
       .sort((a,b)=>{
 
-        const diff=
+        return (
           counts[a.id]-
-          counts[b.id];
-
-        return diff+
-          (Math.random()-.5)*0.8;
+          counts[b.id]
+        )+
+        (Math.random()-.5)*.8;
 
       });
 
 
-    const used=new Set();
+    const used=
+      new Set();
 
 
     for(
@@ -1281,18 +1777,10 @@ function buildSchedule(
       court++
     ){
 
-      /*
-        このコートの4人を探す。
-      */
-
       let bestGroup=null;
 
-      let bestGroupScore=Infinity;
+      let bestScore=Infinity;
 
-
-      /*
-        何度も候補を作る。
-      */
 
       for(
         let trial=0;
@@ -1302,8 +1790,8 @@ function buildSchedule(
 
         const candidates=
           shuffle(pool)
-          .filter(p=>
-            !used.has(p.id)
+          .filter(
+            p=>!used.has(p.id)
           );
 
 
@@ -1315,40 +1803,16 @@ function buildSchedule(
           candidates.slice(0,4);
 
 
-        /*
-          出場回数が少ない人を優先するので、
-          候補を評価。
-        */
-
-        let score=0;
+        let baseScore=0;
 
 
         group.forEach(p=>{
 
-          score+=
+          baseScore+=
             counts[p.id]*20;
 
         });
 
-
-        /*
-          男女比。
-        */
-
-        const m=
-          group.filter(
-            p=>p.gender==="M"
-          ).length;
-
-        const f=
-          group.filter(
-            p=>p.gender==="F"
-          ).length;
-
-
-        /*
-          ペアの3パターンを試す。
-        */
 
         const pairings=[
 
@@ -1370,11 +1834,15 @@ function buildSchedule(
         ];
 
 
-        for(const pairing of pairings){
+        for(
+          const pairing of pairings
+        ){
 
-          const a=pairing[0];
+          const a=
+            pairing[0];
 
-          const b=pairing[1];
+          const b=
+            pairing[1];
 
 
           if(
@@ -1397,18 +1865,12 @@ function buildSchedule(
           )continue;
 
 
-          let pairScore=score;
-
-
-          /*
-            同じペアを避ける
-          */
-
           const keyA=
             pairKey(
               a[0].name,
               a[1].name
             );
+
 
           const keyB=
             pairKey(
@@ -1417,21 +1879,19 @@ function buildSchedule(
             );
 
 
-          const repeatA=
-            pairHistory.get(keyA)||0;
-
-          const repeatB=
-            pairHistory.get(keyB)||0;
+          let score=
+            baseScore;
 
 
-          pairScore+=
-            repeatA*100+
-            repeatB*100;
+          score+=
+            (pairHistory.get(keyA)||0)
+            *100;
 
 
-          /*
-            男男 vs 女女を避ける
-          */
+          score+=
+            (pairHistory.get(keyB)||0)
+            *100;
+
 
           if(avoidMMFF){
 
@@ -1461,25 +1921,29 @@ function buildSchedule(
               (af&&ba)
             ){
 
-              pairScore+=500;
+              score+=500;
 
             }
 
           }
 
 
-          pairScore+=
+          score+=
             Math.random()*20;
 
 
-          if(pairScore<bestGroupScore){
+          if(score<bestScore){
 
-            bestGroupScore=pairScore;
+            bestScore=score;
 
             bestGroup={
+
               players:group,
+
               a,
+
               b
+
             };
 
           }
@@ -1489,16 +1953,17 @@ function buildSchedule(
       }
 
 
-      if(!bestGroup){
-
+      if(!bestGroup)
         return null;
-      }
 
 
       /*
-        同時進行なので、
-        このラウンドでは使った人を
+        重要：
+        このroundで使った人を
         usedに入れる。
+
+        → 同時進行の別コートには
+        同じ人が絶対に入らない。
       */
 
       bestGroup.players.forEach(p=>{
@@ -1516,6 +1981,7 @@ function buildSchedule(
           bestGroup.a[1].name
         );
 
+
       const keyB=
         pairKey(
           bestGroup.b[0].name,
@@ -1528,13 +1994,14 @@ function buildSchedule(
         (pairHistory.get(keyA)||0)+1
       );
 
+
       pairHistory.set(
         keyB,
         (pairHistory.get(keyB)||0)+1
       );
 
 
-      matches.push({
+      result.push({
 
         round,
 
@@ -1551,11 +2018,8 @@ function buildSchedule(
   }
 
 
-  /*
-    同じペアが何回繰り返されたか
-  */
-
   let repeatPairs=0;
+
 
   pairHistory.forEach(v=>{
 
@@ -1567,7 +2031,7 @@ function buildSchedule(
 
   return{
 
-    matches,
+    matches:result,
 
     counts,
 
@@ -1589,69 +2053,83 @@ function renderMatches(){
   box.innerHTML="";
 
 
+  if(!matches.length){
+
+    box.innerHTML=
+      `<div class="empty">
+        まだ試合が作成されていません。
+      </div>`;
+
+    return;
+
+  }
+
+
   matches.forEach(m=>{
 
-    const div=document.createElement("div");
+    const div=
+      document.createElement("div");
+
 
     div.className="match";
 
 
     div.innerHTML=`
 
-    <div class="match-head">
+      <div class="match-head">
 
-      <span>
-        第${m.round}試合
-      </span>
+        <span>
+          第${m.round}試合
+        </span>
 
-      <span class="court">
-        Court ${m.court}
-      </span>
-
-    </div>
-
-
-    <div class="match-teams">
-
-      <div class="side">
-
-        <div class="side-title">
-          TEAM A
-        </div>
-
-        <div class="side-player">
-          ${escapeHtml(m.a[0].name)}
-        </div>
-
-        <div class="side-player">
-          ${escapeHtml(m.a[1].name)}
-        </div>
+        <span class="court">
+          Court ${m.court}
+        </span>
 
       </div>
 
 
-      <div class="vs">
-        VS
+      <div class="match-teams">
+
+        <div class="side">
+
+          <div class="side-title">
+            TEAM A
+          </div>
+
+          <div class="side-player">
+            ${escapeHtml(m.a[0].name)}
+          </div>
+
+          <div class="side-player">
+            ${escapeHtml(m.a[1].name)}
+          </div>
+
+        </div>
+
+
+        <div class="vs">
+          VS
+        </div>
+
+
+        <div class="side">
+
+          <div class="side-title">
+            TEAM B
+          </div>
+
+          <div class="side-player">
+            ${escapeHtml(m.b[0].name)}
+          </div>
+
+          <div class="side-player">
+            ${escapeHtml(m.b[1].name)}
+          </div>
+
+        </div>
+
       </div>
-
-
-      <div class="side">
-
-        <div class="side-title">
-          TEAM B
-        </div>
-
-        <div class="side-player">
-          ${escapeHtml(m.b[0].name)}
-        </div>
-
-        <div class="side-player">
-          ${escapeHtml(m.b[1].name)}
-        </div>
-
-      </div>
-
-    </div>
 
     `;
 
@@ -1674,24 +2152,45 @@ function renderAppearances(counts){
 
   const list=
     presentPeople()
-    .map(p=>({
+      .map(p=>({
 
-      person:p,
+        person:p,
 
-      count:counts[p.id]||0
+        count:
+          counts[p.id]||0
 
-    }))
-    .sort((a,b)=>{
+      }))
+      .sort((a,b)=>{
 
-      if(a.count!==b.count)
-        return a.count-b.count;
+        if(
+          a.count!==b.count
+        ){
 
-      return a.person.name.localeCompare(
-        b.person.name,
-        "ja"
-      );
+          return (
+            a.count-b.count
+          );
 
-    });
+        }
+
+        return a.person.name
+          .localeCompare(
+            b.person.name,
+            "ja"
+          );
+
+      });
+
+
+  if(!list.length){
+
+    box.innerHTML=
+      `<div class="empty">
+        出席者がいません。
+      </div>`;
+
+    return;
+
+  }
 
 
   const values=
@@ -1701,67 +2200,212 @@ function renderAppearances(counts){
   const min=
     Math.min(...values);
 
+
   const max=
     Math.max(...values);
 
 
   box.innerHTML=`
 
-  <div class="note"
-    style="margin-bottom:10px">
+    <div
+      class="note"
+      style="margin-bottom:10px">
 
-    出場回数：
-    最少 ${min}回 ／
-    最多 ${max}回
+      出場回数：
+      最少 ${min}回 ／
+      最多 ${max}回
 
-    ${max-min<=1
-      ? " → ほぼ均等です。"
-      : ""
-    }
+      ${
+        max-min<=1
+        ? " → ほぼ均等です。"
+        : ""
+      }
 
-  </div>
-
-
-  <table class="appearance-table">
-
-    <thead>
-
-      <tr>
-
-        <th>名前</th>
-
-        <th>出場回数</th>
-
-      </tr>
-
-    </thead>
+    </div>
 
 
-    <tbody>
+    <table class="appearance-table">
 
-      ${list.map(x=>`
+      <thead>
 
         <tr>
 
-          <td>
-            ${escapeHtml(x.person.name)}
-          </td>
+          <th>名前</th>
 
-          <td>
-            ${x.count}回
-          </td>
+          <th>出場回数</th>
 
         </tr>
 
-      `).join("")}
+      </thead>
 
-    </tbody>
 
-  </table>
+      <tbody>
+
+        ${list.map(x=>`
+
+          <tr>
+
+            <td>
+              ${escapeHtml(
+                x.person.name
+              )}
+            </td>
+
+            <td>
+              ${x.count}回
+            </td>
+
+          </tr>
+
+        `).join("")}
+
+      </tbody>
+
+    </table>
 
   `;
 
 }
+
+
+/* =========================
+   ページを開いたとき
+========================= */
+
+window.addEventListener(
+  "DOMContentLoaded",
+  ()=>{
+
+    /*
+      保存データがあれば
+      自動的に復元する
+    */
+
+    const saved=
+      localStorage.getItem(
+        STORAGE_KEY
+      );
+
+
+    if(saved){
+
+      try{
+
+        const data=
+          JSON.parse(saved);
+
+
+        /*
+          自動復元
+        */
+
+        $("names").value=
+          data.names||"";
+
+
+        people=
+          Array.isArray(data.people)
+            ? data.people
+            : [];
+
+
+        $("teamCount").value=
+          data.teamCount||4;
+
+
+        $("teamNG").value=
+          data.teamNG||"";
+
+
+        $("courtCount").value=
+          data.courtCount||2;
+
+
+        $("matchCount").value=
+          data.matchCount||10;
+
+
+        $("pairNG").value=
+          data.pairNG||"";
+
+
+        $("avoidMMFF").checked=
+          data.avoidMMFF!==false;
+
+
+        teams=
+          Array.isArray(data.teams)
+            ? data.teams
+            : [];
+
+
+        matches=
+          Array.isArray(data.matches)
+            ? data.matches
+            : [];
+
+
+        renderPeople();
+
+        renderTeams();
+
+        renderMatches();
+
+
+        if(matches.length){
+
+          const counts={};
+
+
+          people.forEach(p=>{
+            counts[p.id]=0;
+          });
+
+
+          matches.forEach(m=>{
+
+            [
+              ...m.a,
+              ...m.b
+            ].forEach(p=>{
+
+              if(
+                counts[p.id]!==undefined
+              ){
+
+                counts[p.id]++;
+
+              }
+
+            });
+
+          });
+
+
+          renderAppearances(
+            counts
+          );
+
+        }
+
+
+        $("saveStatus").textContent=
+          "前回のデータを自動復元しました ✓";
+
+
+      }catch(e){
+
+        console.log(
+          "保存データの復元に失敗",
+          e
+        );
+
+      }
+
+    }
+
+  }
+);
 
 </script>
 
