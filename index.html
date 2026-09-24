@@ -13,8 +13,12 @@
 body {
   margin: 0;
   font-family:
-    -apple-system, BlinkMacSystemFont, "Segoe UI",
-    "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Hiragino Kaku Gothic ProN",
+    "Yu Gothic",
+    sans-serif;
   background: #f3f6f8;
   color: #17202a;
 }
@@ -38,7 +42,7 @@ header p {
 
 .container {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: auto;
   padding: 20px;
 }
 
@@ -57,13 +61,13 @@ h2 {
 }
 
 h3 {
-  margin-bottom: 10px;
+  margin-top: 0;
 }
 
 button {
   border: 0;
   border-radius: 8px;
-  padding: 9px 14px;
+  padding: 10px 14px;
   cursor: pointer;
   font-weight: bold;
   background: #1f9d8b;
@@ -83,27 +87,29 @@ button.danger {
 }
 
 button.warning {
-  background: #e0a800;
+  background: #d99b00;
 }
 
 button.small {
-  padding: 5px 9px;
+  padding: 6px 9px;
   font-size: 12px;
 }
 
-input, select {
+input,
+select {
   width: 100%;
   padding: 9px;
   border: 1px solid #ccd5db;
   border-radius: 7px;
   background: white;
+  font-size: 14px;
 }
 
 label {
-  font-size: 13px;
-  font-weight: bold;
   display: block;
   margin-bottom: 5px;
+  font-size: 13px;
+  font-weight: bold;
 }
 
 .form-grid {
@@ -113,10 +119,17 @@ label {
   align-items: end;
 }
 
-@media(max-width:700px) {
-  .form-grid {
-    grid-template-columns: 1fr 1fr;
-  }
+.controls {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 15px;
 }
 
 .table-wrap {
@@ -129,7 +142,8 @@ table {
   margin-top: 15px;
 }
 
-th, td {
+th,
+td {
   padding: 9px;
   border-bottom: 1px solid #e4e8eb;
   text-align: center;
@@ -145,43 +159,14 @@ tr.absent {
 
 .badge {
   display: inline-block;
-  padding: 4px 9px;
+  padding: 4px 8px;
   border-radius: 20px;
   font-size: 12px;
   font-weight: bold;
 }
 
-.badge.male {
-  background: #d9ecff;
-  color: #1765a0;
-}
-
-.badge.female {
-  background: #ffe0ed;
-  color: #b12d67;
-}
-
 .badge.grade {
   background: #edf0f2;
-}
-
-.controls {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-}
-
-@media(max-width:700px) {
-  .controls {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-.action-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 15px;
 }
 
 .ng-section {
@@ -198,20 +183,11 @@ tr.absent {
   margin-bottom: 8px;
 }
 
-@media(max-width:600px) {
-  .ng-row {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .ng-row button {
-    grid-column: span 2;
-  }
-}
-
 .team-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
   gap: 15px;
+  margin-top: 15px;
 }
 
 .team {
@@ -222,7 +198,6 @@ tr.absent {
 }
 
 .team h3 {
-  margin-top: 0;
   color: #173f5f;
 }
 
@@ -241,6 +216,7 @@ tr.absent {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
   gap: 15px;
+  margin-top: 15px;
 }
 
 .match {
@@ -265,18 +241,13 @@ tr.absent {
 
 .pair {
   background: #f2f7f8;
-  padding: 8px;
+  padding: 9px;
   border-radius: 7px;
-}
-
-.stat-table td:first-child {
-  text-align: left;
-  font-weight: bold;
 }
 
 .notice {
   background: #fff8df;
-  border-left: 4px solid #e0a800;
+  border-left: 4px solid #d99b00;
   padding: 12px;
   border-radius: 7px;
   margin-top: 12px;
@@ -296,11 +267,62 @@ tr.absent {
   padding: 25px;
 }
 
+.stat-good {
+  font-weight: bold;
+}
+
+.stat-bad {
+  color: #c0392b;
+  font-weight: bold;
+}
+
+.summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.summary-box {
+  background: #f4f7f8;
+  border-radius: 10px;
+  padding: 12px;
+  text-align: center;
+}
+
+.summary-number {
+  font-size: 25px;
+  font-weight: bold;
+  color: #173f5f;
+}
+
 footer {
   text-align: center;
   color: #777;
   padding: 30px;
   font-size: 13px;
+}
+
+@media(max-width:700px) {
+  .form-grid,
+  .controls {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media(max-width:500px) {
+  .form-grid,
+  .controls {
+    grid-template-columns: 1fr;
+  }
+
+  .ng-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ng-row button {
+    grid-column: span 2;
+  }
 }
 </style>
 </head>
@@ -309,14 +331,17 @@ footer {
 
 <header>
   <h1>🎾 テニスサークル組み合わせメーカー</h1>
-  <p>チーム分け・ダブルス・出欠を自動管理</p>
+  <p>出欠・チーム分け・ダブルスを自動作成</p>
 </header>
 
 <div class="container">
 
-<!-- ================= 名簿 ================= -->
+<!-- =====================================================
+     名簿
+===================================================== -->
 
 <div class="card">
+
 <h2>① 名簿管理</h2>
 
 <div class="form-grid">
@@ -363,20 +388,37 @@ footer {
 </div>
 
 <div class="action-row">
-<button onclick="addPlayer()">＋ メンバー追加</button>
-<button class="secondary" onclick="exportData()">データ保存</button>
-<button class="secondary" onclick="document.getElementById('fileInput').click()">データ復元</button>
+
+<button onclick="addPlayer()">
+＋ メンバー追加
+</button>
+
+<button
+  class="secondary"
+  onclick="exportData()">
+データ保存
+</button>
+
+<button
+  class="secondary"
+  onclick="document.getElementById('fileInput').click()">
+データ復元
+</button>
+
 <input
-  type="file"
   id="fileInput"
+  type="file"
   accept=".json"
   style="display:none"
   onchange="importData(event)"
 >
+
 </div>
 
 <div class="table-wrap">
+
 <table>
+
 <thead>
 <tr>
 <th>出席</th>
@@ -387,37 +429,57 @@ footer {
 <th>操作</th>
 </tr>
 </thead>
+
 <tbody id="memberTable"></tbody>
+
 </table>
-</div>
 
 </div>
 
+</div>
 
-<!-- ================= チーム分け ================= -->
+
+<!-- =====================================================
+     チーム分け
+===================================================== -->
 
 <div class="card">
+
 <h2>② チーム分け</h2>
 
 <div class="controls">
 
 <div>
 <label>チーム数</label>
-<input id="teamCount" type="number" min="1" value="4">
+<input
+  id="teamCount"
+  type="number"
+  min="1"
+  value="4">
 </div>
 
 </div>
 
 <div class="ng-section">
+
 <h3>同じチームにならないペア</h3>
 
 <div id="teamNgList"></div>
 
-<button class="secondary small" onclick="addTeamNG()">＋ ペアNGを追加</button>
+<button
+  class="secondary small"
+  onclick="addTeamNG()">
+＋ ペアNGを追加
+</button>
+
 </div>
 
 <div class="action-row">
-<button onclick="makeTeams()">🎲 チーム分け実行</button>
+
+<button onclick="makeTeams()">
+🎲 チーム分け実行
+</button>
+
 </div>
 
 <div id="teamResult"></div>
@@ -425,21 +487,32 @@ footer {
 </div>
 
 
-<!-- ================= ダブルス ================= -->
+<!-- =====================================================
+     ダブルス
+===================================================== -->
 
 <div class="card">
+
 <h2>③ ダブルス自動作成</h2>
 
 <div class="controls">
 
 <div>
 <label>コート数</label>
-<input id="courtCount" type="number" min="1" value="2">
+<input
+  id="courtCount"
+  type="number"
+  min="1"
+  value="2">
 </div>
 
 <div>
 <label>試合数</label>
-<input id="matchCount" type="number" min="1" value="10">
+<input
+  id="matchCount"
+  type="number"
+  min="1"
+  value="10">
 </div>
 
 </div>
@@ -449,17 +522,26 @@ footer {
 <h3>ダブルス・ペアNG</h3>
 
 <p style="font-size:13px;color:#666;">
-同じペアになることだけを禁止します。対戦相手になることは可能です。
+ここで設定した2人は「同じペア」にはなりません。
+対戦相手として組み合わせることは可能です。
 </p>
 
 <div id="doubleNgList"></div>
 
-<button class="secondary small" onclick="addDoubleNG()">＋ ペアNGを追加</button>
+<button
+  class="secondary small"
+  onclick="addDoubleNG()">
+＋ ペアNGを追加
+</button>
 
 </div>
 
 <div class="action-row">
-<button onclick="makeMatches()">🎾 ダブルスを作成</button>
+
+<button onclick="makeMatches()">
+🎾 ダブルスを作成
+</button>
+
 </div>
 
 <div id="matchResult"></div>
@@ -467,11 +549,22 @@ footer {
 </div>
 
 
-<!-- ================= 出場回数 ================= -->
+<!-- =====================================================
+     出場回数
+===================================================== -->
 
 <div class="card">
+
 <h2>④ 出場回数</h2>
-<div id="statsResult"></div>
+
+<div id="statsResult">
+
+<div class="empty">
+まだ試合が作成されていません。
+</div>
+
+</div>
+
 </div>
 
 </div>
@@ -493,9 +586,9 @@ let teamNG = [];
 
 let doubleNG = [];
 
-let matches = [];
-
 let teams = [];
+
+let matches = [];
 
 
 /* =========================================================
@@ -519,16 +612,15 @@ window.onload = function() {
 
 function saveData() {
 
-  const data = {
-    players,
-    teamNG,
-    doubleNG
-  };
-
   localStorage.setItem(
     "tennisCircleData",
-    JSON.stringify(data)
+    JSON.stringify({
+      players,
+      teamNG,
+      doubleNG
+    })
   );
+
 }
 
 
@@ -539,25 +631,38 @@ function saveData() {
 function loadData() {
 
   const raw =
-    localStorage.getItem("tennisCircleData");
+    localStorage.getItem(
+      "tennisCircleData"
+    );
 
   if (!raw) return;
 
   try {
 
-    const data = JSON.parse(raw);
+    const data =
+      JSON.parse(raw);
 
-    players = data.players || [];
+    players =
+      Array.isArray(data.players)
+        ? data.players
+        : [];
 
-    teamNG = data.teamNG || [];
+    teamNG =
+      Array.isArray(data.teamNG)
+        ? data.teamNG
+        : [];
 
-    doubleNG = data.doubleNG || [];
+    doubleNG =
+      Array.isArray(data.doubleNG)
+        ? data.doubleNG
+        : [];
 
   } catch(e) {
 
     console.error(e);
 
   }
+
 }
 
 
@@ -568,7 +673,10 @@ function loadData() {
 function addPlayer() {
 
   const name =
-    document.getElementById("nameInput").value.trim();
+    document
+      .getElementById("nameInput")
+      .value
+      .trim();
 
   if (!name) {
 
@@ -580,18 +688,29 @@ function addPlayer() {
 
   const player = {
 
-    id: crypto.randomUUID(),
+    id:
+      createID(),
 
     name,
 
     grade:
-      Number(document.getElementById("gradeInput").value),
+      Number(
+        document
+          .getElementById("gradeInput")
+          .value
+      ),
 
     gender:
-      document.getElementById("genderInput").value,
+      document
+        .getElementById("genderInput")
+        .value,
 
     skill:
-      Number(document.getElementById("skillInput").value),
+      Number(
+        document
+          .getElementById("skillInput")
+          .value
+      ),
 
     present: true
 
@@ -599,7 +718,9 @@ function addPlayer() {
 
   players.push(player);
 
-  document.getElementById("nameInput").value = "";
+  document
+    .getElementById("nameInput")
+    .value = "";
 
   saveData();
 
@@ -617,14 +738,16 @@ function addPlayer() {
 function renderMembers() {
 
   const tbody =
-    document.getElementById("memberTable");
+    document.getElementById(
+      "memberTable"
+    );
 
   if (!players.length) {
 
     tbody.innerHTML = `
       <tr>
         <td colspan="6" class="empty">
-          まだメンバーが登録されていません
+          メンバーが登録されていません。
         </td>
       </tr>
     `;
@@ -634,50 +757,36 @@ function renderMembers() {
   }
 
   tbody.innerHTML =
-    players.map((p, i) => {
-
-      return `
+    players.map(
+      (p,index) => `
 
       <tr class="${p.present ? "" : "absent"}">
 
         <td>
+
           <input
             type="checkbox"
             ${p.present ? "checked" : ""}
-            onchange="toggleAttendance(${i})"
+            onchange="toggleAttendance(${index})"
           >
+
         </td>
 
         <td>
+
           <input
             value="${escapeHTML(p.name)}"
-            onchange="editName(${i}, this.value)"
+            onchange="editName(${index},this.value)"
           >
+
         </td>
 
         <td>
 
-          <select onchange="editGrade(${i}, this.value)">
+          <select
+            onchange="editGrade(${index},this.value)">
 
-            <option value="1"
-              ${p.grade === 1 ? "selected" : ""}>
-              1回生
-            </option>
-
-            <option value="2"
-              ${p.grade === 2 ? "selected" : ""}>
-              2回生
-            </option>
-
-            <option value="3"
-              ${p.grade === 3 ? "selected" : ""}>
-              3回生
-            </option>
-
-            <option value="4"
-              ${p.grade === 4 ? "selected" : ""}>
-              4回生以上
-            </option>
+            ${gradeOptions(p.grade)}
 
           </select>
 
@@ -685,14 +794,17 @@ function renderMembers() {
 
         <td>
 
-          <select onchange="editGender(${i}, this.value)">
+          <select
+            onchange="editGender(${index},this.value)">
 
             <option
+              value="男"
               ${p.gender === "男" ? "selected" : ""}>
               男
             </option>
 
             <option
+              value="女"
               ${p.gender === "女" ? "selected" : ""}>
               女
             </option>
@@ -703,22 +815,10 @@ function renderMembers() {
 
         <td>
 
-          <select onchange="editSkill(${i}, this.value)">
+          <select
+            onchange="editSkill(${index},this.value)">
 
-            ${Array.from({length:10}, (_,n) => {
-
-              const v = n + 1;
-
-              return `
-                <option
-                  value="${v}"
-                  ${p.skill === v ? "selected" : ""}
-                >
-                  ${v}
-                </option>
-              `;
-
-            }).join("")}
+            ${skillOptions(p.skill)}
 
           </select>
 
@@ -728,7 +828,7 @@ function renderMembers() {
 
           <button
             class="danger small"
-            onclick="deletePlayer(${i})">
+            onclick="deletePlayer(${index})">
             削除
           </button>
 
@@ -736,9 +836,8 @@ function renderMembers() {
 
       </tr>
 
-      `;
-
-    }).join("");
+    `
+    ).join("");
 
 }
 
@@ -747,9 +846,10 @@ function renderMembers() {
    編集
 ========================================================= */
 
-function editName(i, value) {
+function editName(index,value) {
 
-  players[i].name = value.trim();
+  players[index].name =
+    value.trim();
 
   saveData();
 
@@ -757,34 +857,41 @@ function editName(i, value) {
 
 }
 
-function editGrade(i, value) {
 
-  players[i].grade = Number(value);
+function editGrade(index,value) {
 
-  saveData();
-
-}
-
-function editGender(i, value) {
-
-  players[i].gender = value;
+  players[index].grade =
+    Number(value);
 
   saveData();
 
 }
 
-function editSkill(i, value) {
 
-  players[i].skill = Number(value);
+function editGender(index,value) {
+
+  players[index].gender =
+    value;
 
   saveData();
 
 }
 
-function toggleAttendance(i) {
 
-  players[i].present =
-    !players[i].present;
+function editSkill(index,value) {
+
+  players[index].skill =
+    Number(value);
+
+  saveData();
+
+}
+
+
+function toggleAttendance(index) {
+
+  players[index].present =
+    !players[index].present;
 
   saveData();
 
@@ -797,51 +904,47 @@ function toggleAttendance(i) {
    削除
 ========================================================= */
 
-function deletePlayer(i) {
+function deletePlayer(index) {
 
-  if (!confirm(
-    `${players[i].name}を削除しますか？`
-  )) return;
+  const p =
+    players[index];
 
-  const id = players[i].id;
+  if (
+    !confirm(
+      p.name +
+      "を削除しますか？"
+    )
+  ) {
+    return;
+  }
 
-  players.splice(i, 1);
+  const id =
+    p.id;
 
-  teamNG = teamNG.filter(
-    p => p[0] !== id && p[1] !== id
+  players.splice(
+    index,
+    1
   );
 
-  doubleNG = doubleNG.filter(
-    p => p[0] !== id && p[1] !== id
-  );
+  teamNG =
+    teamNG.filter(
+      pair =>
+        pair[0] !== id &&
+        pair[1] !== id
+    );
+
+  doubleNG =
+    doubleNG.filter(
+      pair =>
+        pair[0] !== id &&
+        pair[1] !== id
+    );
 
   saveData();
 
   renderMembers();
 
   renderNGLists();
-
-}
-
-
-/* =========================================================
-   NG選択肢
-========================================================= */
-
-function playerOptions(selected) {
-
-  return players.map(p => {
-
-    return `
-      <option
-        value="${p.id}"
-        ${p.id === selected ? "selected" : ""}
-      >
-        ${escapeHTML(p.name)}
-      </option>
-    `;
-
-  }).join("");
 
 }
 
@@ -854,7 +957,9 @@ function addTeamNG() {
 
   if (players.length < 2) {
 
-    alert("先に2人以上登録してください。");
+    alert(
+      "2人以上登録してください。"
+    );
 
     return;
 
@@ -876,7 +981,9 @@ function addDoubleNG() {
 
   if (players.length < 2) {
 
-    alert("先に2人以上登録してください。");
+    alert(
+      "2人以上登録してください。"
+    );
 
     return;
 
@@ -893,6 +1000,10 @@ function addDoubleNG() {
 
 }
 
+
+/* =========================================================
+   NG表示
+========================================================= */
 
 function renderNGLists() {
 
@@ -911,16 +1022,22 @@ function renderNGLists() {
 }
 
 
-function renderNGList(containerId, list, type) {
+function renderNGList(
+  elementID,
+  list,
+  type
+) {
 
   const container =
-    document.getElementById(containerId);
+    document.getElementById(
+      elementID
+    );
 
   if (!list.length) {
 
     container.innerHTML =
-      `<p style="color:#888;font-size:13px;">
-        設定されているNGはありません
+      `<p style="font-size:13px;color:#888;">
+        設定されているNGはありません。
       </p>`;
 
     return;
@@ -928,60 +1045,96 @@ function renderNGList(containerId, list, type) {
   }
 
   container.innerHTML =
-    list.map((pair, index) => {
-
-      return `
+    list.map(
+      (pair,index) => `
 
       <div class="ng-row">
 
         <select
-          onchange="changeNG('${type}', ${index}, 0, this.value)"
-        >
+          onchange="
+            changeNG(
+              '${type}',
+              ${index},
+              0,
+              this.value
+            )
+          ">
+
           ${playerOptions(pair[0])}
+
         </select>
 
         <select
-          onchange="changeNG('${type}', ${index}, 1, this.value)"
-        >
+          onchange="
+            changeNG(
+              '${type}',
+              ${index},
+              1,
+              this.value
+            )
+          ">
+
           ${playerOptions(pair[1])}
+
         </select>
 
         <button
           class="danger small"
-          onclick="removeNG('${type}', ${index})">
+          onclick="
+            removeNG(
+              '${type}',
+              ${index}
+            )
+          ">
           削除
         </button>
 
       </div>
 
-      `;
-
-    }).join("");
+    `
+    ).join("");
 
 }
 
 
-function changeNG(type, index, position, value) {
+function changeNG(
+  type,
+  index,
+  position,
+  value
+) {
 
   const list =
-    type === "team" ? teamNG : doubleNG;
+    type === "team"
+      ? teamNG
+      : doubleNG;
 
-  list[index][position] = value;
+  list[index][position] =
+    value;
 
   saveData();
 
 }
 
 
-function removeNG(type, index) {
+function removeNG(
+  type,
+  index
+) {
 
   if (type === "team") {
 
-    teamNG.splice(index, 1);
+    teamNG.splice(
+      index,
+      1
+    );
 
   } else {
 
-    doubleNG.splice(index, 1);
+    doubleNG.splice(
+      index,
+      1
+    );
 
   }
 
@@ -996,14 +1149,26 @@ function removeNG(type, index) {
    NG判定
 ========================================================= */
 
-function isNG(list, a, b) {
+function isNG(
+  list,
+  a,
+  b
+) {
 
-  return list.some(pair =>
+  return list.some(
+    pair =>
 
-    (pair[0] === a.id && pair[1] === b.id) ||
+      (
+        pair[0] === a.id &&
+        pair[1] === b.id
+      )
 
-    (pair[0] === b.id && pair[1] === a.id)
+      ||
 
+      (
+        pair[0] === b.id &&
+        pair[1] === a.id
+      )
   );
 
 }
@@ -1016,130 +1181,182 @@ function isNG(list, a, b) {
 function makeTeams() {
 
   const active =
-    players.filter(p => p.present);
+    players.filter(
+      p => p.present
+    );
 
-  const count =
-    Number(document.getElementById("teamCount").value);
+  const teamCount =
+    Math.max(
+      1,
+      Number(
+        document
+          .getElementById("teamCount")
+          .value
+      )
+    );
 
   if (!active.length) {
 
-    alert("出席者がいません。");
-
-    return;
-
-  }
-
-  if (count < 1) {
-
-    alert("チーム数を確認してください。");
-
-    return;
-
-  }
-
-  if (count > active.length) {
-
-    alert("チーム数が出席人数を超えています。");
-
-    return;
-
-  }
-
-  teams =
-    Array.from(
-      {length: count},
-      () => []
+    alert(
+      "出席者がいません。"
     );
 
+    return;
+
+  }
+
+  if (
+    teamCount >
+    active.length
+  ) {
+
+    alert(
+      "チーム数が出席人数を超えています。"
+    );
+
+    return;
+
+  }
+
+
   /*
-    完全ランダムではなく、
-    能力の高い順に蛇行させることで
-    能力差を抑える初期配置を作る。
-  */
+   * 初期配置
+   *
+   * 能力順に蛇行配置。
+   */
 
   const sorted =
     [...active].sort(
-      (a,b) => b.skill - a.skill
+      (a,b) =>
+        b.skill - a.skill
     );
 
-  sorted.forEach((p, index) => {
+  teams =
+    Array.from(
+      {
+        length: teamCount
+      },
+      () => []
+    );
 
-    const round =
-      Math.floor(index / count);
 
-    const pos =
-      index % count;
+  sorted.forEach(
+    (player,index) => {
 
-    const teamIndex =
-      round % 2 === 0
-      ? pos
-      : count - 1 - pos;
+      const round =
+        Math.floor(
+          index / teamCount
+        );
 
-    teams[teamIndex].push(p);
+      let position =
+        index % teamCount;
 
-  });
+      if (
+        round % 2 === 1
+      ) {
+
+        position =
+          teamCount -
+          1 -
+          position;
+
+      }
+
+      teams[position].push(
+        player
+      );
+
+    }
+  );
 
 
   /*
-    NG違反やバランスを評価し、
-    メンバー交換による改善を繰り返す。
-  */
+   * 交換による改善
+   */
 
-  for (let loop = 0; loop < 5000; loop++) {
+  for (
+    let iteration = 0;
+    iteration < 3000;
+    iteration++
+  ) {
 
-    let best = null;
+    let current =
+      evaluateTeams(
+        teams
+      );
+
+    let best =
+      null;
 
     let bestScore =
-      evaluateTeams(teams);
+      current;
 
-    for (let a = 0; a < count; a++) {
 
-      for (let b = a + 1; b < count; b++) {
+    for (
+      let a = 0;
+      a < teams.length;
+      a++
+    ) {
+
+      for (
+        let b = a + 1;
+        b < teams.length;
+        b++
+      ) {
 
         for (
-          let ia = 0;
-          ia < teams[a].length;
-          ia++
+          let i = 0;
+          i < teams[a].length;
+          i++
         ) {
 
           for (
-            let ib = 0;
-            ib < teams[b].length;
-            ib++
+            let j = 0;
+            j < teams[b].length;
+            j++
           ) {
 
             [
-              teams[a][ia],
-              teams[b][ib]
+              teams[a][i],
+              teams[b][j]
             ] =
             [
-              teams[b][ib],
-              teams[a][ia]
+              teams[b][j],
+              teams[a][i]
             ];
 
+
             const score =
-              evaluateTeams(teams);
+              evaluateTeams(
+                teams
+              );
 
-            if (score < bestScore) {
 
-              bestScore = score;
+            if (
+              score <
+              bestScore
+            ) {
+
+              bestScore =
+                score;
 
               best = {
                 a,
                 b,
-                ia,
-                ib
+                i,
+                j
               };
 
             }
 
+
             [
-              teams[a][ia],
-              teams[b][ib]
+              teams[a][i],
+              teams[b][j]
             ] =
             [
-              teams[b][ib],
-              teams[a][ia]
+              teams[b][j],
+              teams[a][i]
             ];
 
           }
@@ -1150,18 +1367,23 @@ function makeTeams() {
 
     }
 
-    if (!best) break;
+
+    if (!best) {
+      break;
+    }
+
 
     [
-      teams[best.a][best.ia],
-      teams[best.b][best.ib]
+      teams[best.a][best.i],
+      teams[best.b][best.j]
     ] =
     [
-      teams[best.b][best.ib],
-      teams[best.a][best.ia]
+      teams[best.b][best.j],
+      teams[best.a][best.i]
     ];
 
   }
+
 
   renderTeams();
 
@@ -1172,12 +1394,22 @@ function makeTeams() {
    チーム評価
 ========================================================= */
 
-function evaluateTeams(ts) {
+function evaluateTeams(
+  teamList
+) {
 
   let score = 0;
 
+
+  /*
+   * ★最優先
+   * 人数差
+   */
+
   const sizes =
-    ts.map(t => t.length);
+    teamList.map(
+      team => team.length
+    );
 
   const maxSize =
     Math.max(...sizes);
@@ -1185,136 +1417,182 @@ function evaluateTeams(ts) {
   const minSize =
     Math.min(...sizes);
 
-  /*
-    人数差を最優先
-  */
 
   score +=
-    (maxSize - minSize) * 100000;
+    (
+      maxSize -
+      minSize
+    ) * 1000000;
 
 
   /*
-    チームごとの能力平均
-  */
+   * 能力
+   */
 
-  const skillAvgs =
-    ts.map(team =>
+  const averages =
+    teamList.map(
+      team => {
 
-      team.length
-      ? team.reduce(
-          (sum,p) => sum + p.skill,
+        if (!team.length) {
+          return 0;
+        }
+
+        return team.reduce(
+          (sum,p) =>
+            sum + p.skill,
           0
-        ) / team.length
-      : 0
+        ) / team.length;
 
+      }
     );
 
-  const skillMean =
-    skillAvgs.reduce(
+
+  const average =
+    averages.reduce(
       (a,b) => a+b,
       0
-    ) / skillAvgs.length;
+    ) / averages.length;
 
-  skillAvgs.forEach(avg => {
 
-    score +=
-      Math.abs(avg - skillMean) * 1000;
+  averages.forEach(
+    value => {
 
-  });
+      score +=
+        Math.abs(
+          value - average
+        ) * 1000;
+
+    }
+  );
 
 
   /*
-    男女比
-  */
+   * 男女比
+   */
 
   const genderRatios =
-    ts.map(team => {
+    teamList.map(
+      team => {
 
-      if (!team.length) return 0;
+        if (!team.length) {
+          return 0;
+        }
 
-      const males =
-        team.filter(
-          p => p.gender === "男"
-        ).length;
+        const male =
+          team.filter(
+            p =>
+              p.gender === "男"
+          ).length;
 
-      return males / team.length;
+        return (
+          male /
+          team.length
+        );
 
-    });
+      }
+    );
 
-  const genderMean =
+
+  const genderAverage =
     genderRatios.reduce(
       (a,b) => a+b,
       0
-    ) / genderRatios.length;
+    ) /
+    genderRatios.length;
 
-  genderRatios.forEach(ratio => {
 
-    score +=
-      Math.abs(ratio - genderMean) * 500;
+  genderRatios.forEach(
+    ratio => {
 
-  });
+      score +=
+        Math.abs(
+          ratio -
+          genderAverage
+        ) * 500;
+
+    }
+  );
 
 
   /*
-    学年分布
-  */
+   * 学年
+   */
 
-  for (let g = 1; g <= 4; g++) {
+  for (
+    let grade = 1;
+    grade <= 4;
+    grade++
+  ) {
 
     const counts =
-      ts.map(team =>
-        team.filter(
-          p => p.grade === g
-        ).length
+      teamList.map(
+        team =>
+          team.filter(
+            p =>
+              p.grade === grade
+          ).length
       );
 
     const avg =
       counts.reduce(
         (a,b) => a+b,
         0
-      ) / counts.length;
+      ) /
+      counts.length;
 
-    counts.forEach(c => {
+    counts.forEach(
+      count => {
 
-      score +=
-        Math.abs(c - avg) * 200;
+        score +=
+          Math.abs(
+            count - avg
+          ) * 200;
 
-    });
+      }
+    );
 
   }
 
 
   /*
-    チーム内NG
-  */
+   * チーム内NG
+   */
 
-  for (const team of ts) {
-
-    for (let i = 0; i < team.length; i++) {
+  teamList.forEach(
+    team => {
 
       for (
-        let j = i + 1;
-        j < team.length;
-        j++
+        let i = 0;
+        i < team.length;
+        i++
       ) {
 
-        if (
-          isNG(
-            teamNG,
-            team[i],
-            team[j]
-          )
+        for (
+          let j = i + 1;
+          j < team.length;
+          j++
         ) {
 
-          score += 10000000;
+          if (
+            isNG(
+              teamNG,
+              team[i],
+              team[j]
+            )
+          ) {
+
+            score +=
+              100000000;
+
+          }
 
         }
 
       }
 
     }
+  );
 
-  }
 
   return score;
 
@@ -1328,110 +1606,134 @@ function evaluateTeams(ts) {
 function renderTeams() {
 
   const result =
-    document.getElementById("teamResult");
+    document.getElementById(
+      "teamResult"
+    );
 
   result.innerHTML = `
 
     <div class="success">
-
       チーム分けが完了しました。
-      出席者 ${players.filter(p => p.present).length}人
-
     </div>
 
-    <div class="team-grid" style="margin-top:15px;">
+    <div class="team-grid">
 
-      ${teams.map((team,index) => {
+      ${teams.map(
+        (team,index) => {
 
-        const avg =
-          team.length
-          ? (
-              team.reduce(
-                (sum,p) => sum+p.skill,
-                0
-              ) / team.length
-            ).toFixed(2)
-          : "-";
+          const avg =
+            team.length
+              ? (
+                  team.reduce(
+                    (sum,p) =>
+                      sum + p.skill,
+                    0
+                  ) /
+                  team.length
+                ).toFixed(2)
+              : "-";
 
-        return `
 
-        <div class="team">
+          return `
 
-          <h3>チーム ${index+1}</h3>
+          <div class="team">
 
-          <div style="font-size:13px;color:#777;margin-bottom:8px;">
-            ${team.length}人　
-            平均能力 ${avg}
-          </div>
+            <h3>
+              チーム ${index + 1}
+            </h3>
 
-          ${team.map(p => `
+            <div
+              style="
+                color:#777;
+                font-size:13px;
+                margin-bottom:8px;
+              "
+            >
+              ${team.length}人　
+              平均能力 ${avg}
+            </div>
 
-            <div class="player">
+            ${team.map(
+              p => `
 
-              <span>
-                ${escapeHTML(p.name)}
-              </span>
+              <div class="player">
 
-              <span>
-                <span class="badge grade">
-                  ${gradeText(p.grade)}
+                <span>
+                  ${escapeHTML(p.name)}
                 </span>
 
                 <span>
+
+                  <span class="badge grade">
+                    ${gradeText(p.grade)}
+                  </span>
+
                   ${p.gender}
+
+                  <strong>
+                    ${p.skill}
+                  </strong>
+
                 </span>
 
-                <strong>
-                  ${p.skill}
-                </strong>
-              </span>
+              </div>
 
-            </div>
+            `
+            ).join("")}
 
-          `).join("")}
+          </div>
 
-        </div>
+          `;
 
-        `;
-
-      }).join("")}
+        }
+      ).join("")}
 
     </div>
+
   `;
 
 }
 
 
 /* =========================================================
-   ダブルス
+   ★ ダブルス作成
 ========================================================= */
 
 function makeMatches() {
 
   const active =
-    players.filter(p => p.present);
+    players.filter(
+      p => p.present
+    );
 
-  const courts =
-    Number(
-      document.getElementById("courtCount").value
+  const courtCount =
+    Math.max(
+      1,
+      Number(
+        document
+          .getElementById("courtCount")
+          .value
+      )
     );
 
   const matchCount =
-    Number(
-      document.getElementById("matchCount").value
+    Math.max(
+      1,
+      Number(
+        document
+          .getElementById("matchCount")
+          .value
+      )
     );
 
-  if (active.length < 4) {
 
-    alert("ダブルスには4人以上の出席者が必要です。");
+  if (
+    active.length < 4
+  ) {
 
-    return;
-
-  }
-
-  if (courts < 1 || matchCount < 1) {
-
-    alert("コート数と試合数を確認してください。");
+    alert(
+      "ダブルスには4人以上の出席者が必要です。"
+    );
 
     return;
 
@@ -1439,42 +1741,89 @@ function makeMatches() {
 
 
   /*
-    出場回数
-  */
+   * 1ラウンドで使える最大人数
+   */
+
+  const matchesPerRound =
+    Math.min(
+      courtCount,
+      Math.floor(
+        active.length / 4
+      )
+    );
+
+
+  if (
+    matchesPerRound < 1
+  ) {
+
+    alert(
+      "試合を作成できません。"
+    );
+
+    return;
+
+  }
+
+
+  /*
+   * 出場回数
+   */
 
   const appearance = {};
 
-  active.forEach(p => {
+  active.forEach(
+    p => {
+      appearance[p.id] = 0;
+    }
+  );
 
-    appearance[p.id] = 0;
 
-  });
-
-
-  const pairHistory = {};
-
-  const opponentHistory = {};
+  /*
+   * 連続出場数
+   */
 
   const consecutive = {};
 
-  active.forEach(p => {
+  active.forEach(
+    p => {
+      consecutive[p.id] = 0;
+    }
+  );
 
-    pairHistory[p.id] = {};
 
-    opponentHistory[p.id] = {};
+  /*
+   * ペア履歴
+   */
 
-    consecutive[p.id] = 0;
+  const pairHistory = {};
 
-  });
+  /*
+   * 対戦履歴
+   */
+
+  const opponentHistory = {};
+
+
+  active.forEach(
+    p => {
+
+      pairHistory[p.id] = {};
+
+      opponentHistory[p.id] = {};
+
+    }
+  );
 
 
   matches = [];
 
 
   /*
-    各ラウンドについて、
-    コート数だけ試合を作る。
-  */
+   * =====================================================
+   * 各ラウンド
+   * =====================================================
+   */
 
   for (
     let round = 0;
@@ -1482,100 +1831,140 @@ function makeMatches() {
     round++
   ) {
 
-    const usedThisRound = new Set();
+    const used =
+      new Set();
 
     const roundMatches = [];
 
 
+    /*
+     * コートごとに作る
+     */
+
     for (
       let court = 0;
-      court < courts;
+      court < matchesPerRound;
       court++
     ) {
 
+      /*
+       * 現時点で出場回数が少ない人を
+       * 優先して候補にする。
+       */
+
       const candidates =
-        buildCandidates(
+        generateMatchCandidates(
           active,
+          used,
           appearance,
-          usedThisRound,
           consecutive,
           pairHistory,
           opponentHistory
         );
 
-      if (!candidates.length) break;
+
+      if (
+        !candidates.length
+      ) {
+        break;
+      }
 
 
       /*
-        候補を評価
-      */
+       * 最良候補を探す
+       */
 
       let best = null;
 
-      let bestScore = Infinity;
+      let bestScore =
+        Infinity;
 
 
       /*
-        ランダム性を少し入れて、
-        毎回同じ組み合わせにならないようにする
-      */
+       * 候補数が多い場合でも
+       * 全探索しすぎない。
+       */
+
+      const shuffled =
+        shuffle(
+          candidates
+        );
+
+
+      const limit =
+        Math.min(
+          shuffled.length,
+          5000
+        );
+
 
       for (
-        let trial = 0;
-        trial < Math.min(
-          2000,
-          candidates.length * 10
-        );
-        trial++
+        let i = 0;
+        i < limit;
+        i++
       ) {
 
         const candidate =
-          candidates[
-            Math.floor(
-              Math.random() *
-              candidates.length
-            )
-          ];
+          shuffled[i];
+
 
         const score =
-          evaluateMatch(
+          evaluateDoubleMatch(
             candidate,
+            active,
+            used,
             appearance,
             consecutive,
             pairHistory,
-            opponentHistory
+            opponentHistory,
+            round
           );
 
-        if (score < bestScore) {
 
-          bestScore = score;
+        if (
+          score <
+          bestScore
+        ) {
 
-          best = candidate;
+          bestScore =
+            score;
+
+          best =
+            candidate;
 
         }
 
       }
 
 
-      if (!best) break;
+      if (!best) {
+        break;
+      }
 
 
       /*
-        採用
-      */
+       * 採用
+       */
 
-      roundMatches.push(best);
-
-      best.players.forEach(p => {
-
-        usedThisRound.add(p.id);
-
-        appearance[p.id]++;
-
-      });
+      roundMatches.push(
+        best
+      );
 
 
-      registerMatchHistory(
+      best.players.forEach(
+        p => {
+
+          used.add(
+            p.id
+          );
+
+          appearance[p.id]++;
+
+        }
+      );
+
+
+      registerHistory(
         best,
         pairHistory,
         opponentHistory
@@ -1585,22 +1974,26 @@ function makeMatches() {
 
 
     /*
-      連続試合数更新
-    */
+     * 連続出場を更新
+     */
 
-    active.forEach(p => {
+    active.forEach(
+      p => {
 
-      if (usedThisRound.has(p.id)) {
+        if (
+          used.has(p.id)
+        ) {
 
-        consecutive[p.id]++;
+          consecutive[p.id]++;
 
-      } else {
+        } else {
 
-        consecutive[p.id] = 0;
+          consecutive[p.id] = 0;
+
+        }
 
       }
-
-    });
+    );
 
 
     matches.push(
@@ -1619,71 +2012,124 @@ function makeMatches() {
 
 
 /* =========================================================
-   ダブルス候補生成
+   ★ 候補生成
 ========================================================= */
 
-function buildCandidates(
+function generateMatchCandidates(
   active,
-  appearance,
   used,
+  appearance,
   consecutive,
   pairHistory,
   opponentHistory
 ) {
 
+  /*
+   * 現在出場回数が少ない順
+   */
+
+  const available =
+    active
+      .filter(
+        p =>
+          !used.has(p.id)
+      )
+      .sort(
+        (a,b) => {
+
+          /*
+           * 出場回数を最優先
+           */
+
+          if (
+            appearance[a.id] !==
+            appearance[b.id]
+          ) {
+
+            return (
+              appearance[a.id] -
+              appearance[b.id]
+            );
+
+          }
+
+
+          /*
+           * 次に連続出場
+           */
+
+          return (
+            consecutive[a.id] -
+            consecutive[b.id]
+          );
+
+        }
+      );
+
+
+  /*
+   * 男女別
+   */
+
+  const males =
+    available.filter(
+      p => p.gender === "男"
+    );
+
+  const females =
+    available.filter(
+      p => p.gender === "女"
+    );
+
+
   const candidates = [];
 
 
   /*
-    男2 / 女2 / 男女 の3パターンを作る
-  */
-
-  const groups = {
-
-    MM:
-      active.filter(
-        p => p.gender === "男" &&
-             !used.has(p.id)
-      ),
-
-    FF:
-      active.filter(
-        p => p.gender === "女" &&
-             !used.has(p.id)
-      ),
-
-    MIX:
-      active.filter(
-        p => !used.has(p.id)
-      )
-
-  };
-
-
-  /*
-    男男 vs 男男
-  */
+   * =====================================================
+   * 男男 vs 男男
+   * =====================================================
+   */
 
   const mmPairs =
-    generatePairs(groups.MM);
+    generateValidPairs(
+      males
+    );
 
-  for (const a of mmPairs) {
 
-    for (const b of mmPairs) {
+  for (
+    let i = 0;
+    i < mmPairs.length;
+    i++
+  ) {
+
+    for (
+      let j = i + 1;
+      j < mmPairs.length;
+      j++
+    ) {
+
+      const pair1 =
+        mmPairs[i];
+
+      const pair2 =
+        mmPairs[j];
+
 
       if (
-        overlap(a,b)
-      ) continue;
+        overlap(
+          pair1,
+          pair2
+        )
+      ) {
+        continue;
+      }
 
-      if (
-        !validPair(a) ||
-        !validPair(b)
-      ) continue;
 
       candidates.push(
-        createCandidate(
-          a,
-          b,
+        createMatch(
+          pair1,
+          pair2,
           "男男 vs 男男"
         )
       );
@@ -1694,26 +2140,50 @@ function buildCandidates(
 
 
   /*
-    女女 vs 女女
-  */
+   * =====================================================
+   * 女女 vs 女女
+   * =====================================================
+   */
 
   const ffPairs =
-    generatePairs(groups.FF);
+    generateValidPairs(
+      females
+    );
 
-  for (const a of ffPairs) {
 
-    for (const b of ffPairs) {
+  for (
+    let i = 0;
+    i < ffPairs.length;
+    i++
+  ) {
 
-      if (overlap(a,b)) continue;
+    for (
+      let j = i + 1;
+      j < ffPairs.length;
+      j++
+    ) {
 
-      if (!validPair(a)) continue;
+      const pair1 =
+        ffPairs[i];
 
-      if (!validPair(b)) continue;
+      const pair2 =
+        ffPairs[j];
+
+
+      if (
+        overlap(
+          pair1,
+          pair2
+        )
+      ) {
+        continue;
+      }
+
 
       candidates.push(
-        createCandidate(
-          a,
-          b,
+        createMatch(
+          pair1,
+          pair2,
           "女女 vs 女女"
         )
       );
@@ -1724,65 +2194,72 @@ function buildCandidates(
 
 
   /*
-    男女 vs 男女
-  */
+   * =====================================================
+   * 男女 vs 男女
+   * =====================================================
+   */
 
-  const male =
-    active.filter(
-      p =>
-        p.gender === "男" &&
-        !used.has(p.id)
-    );
+  for (
+    const m1 of males
+  ) {
 
-  const female =
-    active.filter(
-      p =>
-        p.gender === "女" &&
-        !used.has(p.id)
-    );
+    for (
+      const m2 of males
+    ) {
 
-  for (const m1 of male) {
+      if (
+        m1.id === m2.id
+      ) {
+        continue;
+      }
 
-    for (const m2 of male) {
 
-      if (m1.id === m2.id) continue;
+      for (
+        const f1 of females
+      ) {
 
-      for (const f1 of female) {
-
-        for (const f2 of female) {
-
-          if (f1.id === f2.id) continue;
-
-          const pair1 =
-            [m1,f1];
-
-          const pair2 =
-            [m2,f2];
+        for (
+          const f2 of females
+        ) {
 
           if (
-            isNG(
+            f1.id === f2.id
+          ) {
+            continue;
+          }
+
+
+          /*
+           * 男女ペア①
+           */
+
+          if (
+            !isNG(
               doubleNG,
               m1,
               f1
-            ) ||
-            isNG(
+            ) &&
+            !isNG(
               doubleNG,
               m2,
               f2
             )
-          ) continue;
+          ) {
 
-          candidates.push(
-            createCandidate(
-              pair1,
-              pair2,
-              "男女 vs 男女"
-            )
-          );
+            candidates.push(
+              createMatch(
+                [m1,f1],
+                [m2,f2],
+                "男女 vs 男女"
+              )
+            );
+
+          }
+
 
           /*
-            逆組みも候補
-          */
+           * 男女ペア②
+           */
 
           if (
             !isNG(
@@ -1798,7 +2275,7 @@ function buildCandidates(
           ) {
 
             candidates.push(
-              createCandidate(
+              createMatch(
                 [m1,f2],
                 [m2,f1],
                 "男女 vs 男女"
@@ -1817,36 +2294,57 @@ function buildCandidates(
 
 
   /*
-    同じ人を使っている候補を除外
-  */
+   * 同一人物が4人の中に
+   * 重複している候補を除外
+   */
 
-  return candidates.filter(c => {
+  return candidates.filter(
+    match => {
 
-    const ids =
-      c.players.map(p => p.id);
+      const ids =
+        match.players.map(
+          p => p.id
+        );
 
-    return new Set(ids).size === 4;
+      return (
+        new Set(ids).size === 4
+      );
 
-  });
+    }
+  );
 
 }
 
 
 /* =========================================================
-   ペア生成
+   有効なペア
 ========================================================= */
 
-function generatePairs(list) {
+function generateValidPairs(
+  playersList
+) {
 
-  const result = [];
+  const pairs = [];
 
-  for (let i = 0; i < list.length; i++) {
 
-    for (let j = i + 1; j < list.length; j++) {
+  for (
+    let i = 0;
+    i < playersList.length;
+    i++
+  ) {
 
-      const a = list[i];
+    for (
+      let j = i + 1;
+      j < playersList.length;
+      j++
+    ) {
 
-      const b = list[j];
+      const a =
+        playersList[i];
+
+      const b =
+        playersList[j];
+
 
       if (
         isNG(
@@ -1854,41 +2352,31 @@ function generatePairs(list) {
           a,
           b
         )
-      ) continue;
+      ) {
+        continue;
+      }
 
-      result.push([a,b]);
+
+      pairs.push([
+        a,
+        b
+      ]);
 
     }
 
   }
 
-  return result;
+
+  return pairs;
 
 }
 
 
 /* =========================================================
-   ペア判定
+   試合生成
 ========================================================= */
 
-function validPair(pair) {
-
-  if (pair.length !== 2) return false;
-
-  return !isNG(
-    doubleNG,
-    pair[0],
-    pair[1]
-  );
-
-}
-
-
-/* =========================================================
-   候補作成
-========================================================= */
-
-function createCandidate(
+function createMatch(
   pair1,
   pair2,
   type
@@ -1897,6 +2385,7 @@ function createCandidate(
   return {
 
     pair1,
+
     pair2,
 
     players: [
@@ -1912,129 +2401,215 @@ function createCandidate(
 
 
 /* =========================================================
-   試合評価
+   ★ ダブルス評価
 ========================================================= */
 
-function evaluateMatch(
+function evaluateDoubleMatch(
   match,
+  active,
+  used,
   appearance,
   consecutive,
   pairHistory,
-  opponentHistory
+  opponentHistory,
+  round
 ) {
 
   let score = 0;
 
 
   /*
-    出場回数を最優先
-  */
+   * =====================================================
+   * 最重要
+   *
+   * 「この試合を入れた後の
+   *  出場回数の最大値−最小値」
+   *
+   * これを最優先する。
+   * =====================================================
+   */
 
-  const appearances =
-    match.players.map(
-      p => appearance[p.id]
+  const after =
+    { ...appearance };
+
+
+  match.players.forEach(
+    p => {
+
+      after[p.id]++;
+
+    }
+  );
+
+
+  const counts =
+    active.map(
+      p => after[p.id]
     );
 
-  const max =
-    Math.max(...appearances);
 
-  const min =
-    Math.min(...appearances);
+  const maxCount =
+    Math.max(...counts);
+
+  const minCount =
+    Math.min(...counts);
+
+
+  /*
+   * ★圧倒的に大きな重み
+   */
 
   score +=
-    (max - min) * 100000;
+    (
+      maxCount -
+      minCount
+    ) * 100000000;
 
 
   /*
-    個人の出場回数そのもの
-  */
+   * =====================================================
+   * 次に「多い人を休ませる」
+   * =====================================================
+   */
 
-  match.players.forEach(p => {
+  match.players.forEach(
+    p => {
 
-    score +=
-      appearance[p.id] * 10000;
+      score +=
+        appearance[p.id] *
+        1000000;
 
-  });
-
-
-  /*
-    連続出場を抑える
-  */
-
-  match.players.forEach(p => {
-
-    score +=
-      consecutive[p.id] * 5000;
-
-  });
+    }
+  );
 
 
   /*
-    チーム戦力差
-  */
+   * =====================================================
+   * 「少ない人を優先」
+   *
+   * 4人の現在試合数合計が少ないほど良い。
+   * =====================================================
+   */
+
+  const totalAppearance =
+    match.players.reduce(
+      (sum,p) =>
+        sum + appearance[p.id],
+      0
+    );
+
+
+  score +=
+    totalAppearance *
+    100000;
+
+
+  /*
+   * =====================================================
+   * 連続出場
+   * =====================================================
+   */
+
+  match.players.forEach(
+    p => {
+
+      score +=
+        consecutive[p.id] *
+        10000;
+
+    }
+  );
+
+
+  /*
+   * =====================================================
+   * 能力差
+   *
+   * ここから優先順位が大幅に下がる。
+   * =====================================================
+   */
 
   const skill1 =
-    match.pair1
-      .reduce(
-        (s,p) => s+p.skill,
-        0
-      );
+    match.pair1.reduce(
+      (sum,p) =>
+        sum + p.skill,
+      0
+    );
 
   const skill2 =
-    match.pair2
-      .reduce(
-        (s,p) => s+p.skill,
-        0
-      );
+    match.pair2.reduce(
+      (sum,p) =>
+        sum + p.skill,
+      0
+    );
+
 
   score +=
-    Math.abs(skill1 - skill2) * 200;
+    Math.abs(
+      skill1 -
+      skill2
+    ) * 1000;
 
 
   /*
-    同じペアを避ける
-  */
+   * =====================================================
+   * 同じペア
+   * =====================================================
+   */
 
-  const p1a = match.pair1[0].id;
+  const a =
+    match.pair1[0].id;
 
-  const p1b = match.pair1[1].id;
+  const b =
+    match.pair1[1].id;
 
-  const p2a = match.pair2[0].id;
+  const c =
+    match.pair2[0].id;
 
-  const p2b = match.pair2[1].id;
+  const d =
+    match.pair2[1].id;
 
 
-  if (
-    pairHistory[p1a]?.[p1b]
-  ) {
+  const pairAB =
+    pairHistory[a]?.[b] || 0;
 
-    score +=
-      pairHistory[p1a][p1b] * 3000;
+  const pairCD =
+    pairHistory[c]?.[d] || 0;
 
-  }
 
-  if (
-    pairHistory[p2a]?.[p2b]
-  ) {
-
-    score +=
-      pairHistory[p2a][p2b] * 3000;
-
-  }
+  score +=
+    (
+      pairAB +
+      pairCD
+    ) * 500;
 
 
   /*
-    同じ対戦を避ける
-  */
+   * =====================================================
+   * 同じ対戦
+   * =====================================================
+   */
 
-  const opponents1 =
-    opponentHistory[p1a]?.[p2a] || 0;
+  const opponents =
+    (
+      opponentHistory[a]?.[c] || 0
+    )
+    +
+    (
+      opponentHistory[a]?.[d] || 0
+    )
+    +
+    (
+      opponentHistory[b]?.[c] || 0
+    )
+    +
+    (
+      opponentHistory[b]?.[d] || 0
+    );
 
-  const opponents2 =
-    opponentHistory[p1b]?.[p2b] || 0;
 
   score +=
-    (opponents1 + opponents2) * 1000;
+    opponents * 100;
 
 
   return score;
@@ -2046,17 +2621,23 @@ function evaluateMatch(
    履歴登録
 ========================================================= */
 
-function registerMatchHistory(
+function registerHistory(
   match,
   pairHistory,
   opponentHistory
 ) {
 
-  const [a,b] =
-    match.pair1;
+  const a =
+    match.pair1[0];
 
-  const [c,d] =
-    match.pair2;
+  const b =
+    match.pair1[1];
+
+  const c =
+    match.pair2[0];
+
+  const d =
+    match.pair2[1];
 
 
   addHistory(
@@ -2100,28 +2681,25 @@ function registerMatchHistory(
 
 
 function addHistory(
-  object,
+  history,
   a,
   b
 ) {
 
-  if (!object[a]) {
-
-    object[a] = {};
-
+  if (!history[a]) {
+    history[a] = {};
   }
 
-  if (!object[b]) {
-
-    object[b] = {};
-
+  if (!history[b]) {
+    history[b] = {};
   }
 
-  object[a][b] =
-    (object[a][b] || 0) + 1;
 
-  object[b][a] =
-    (object[b][a] || 0) + 1;
+  history[a][b] =
+    (history[a][b] || 0) + 1;
+
+  history[b][a] =
+    (history[b][a] || 0) + 1;
 
 }
 
@@ -2130,20 +2708,26 @@ function addHistory(
    重複判定
 ========================================================= */
 
-function overlap(a,b) {
+function overlap(
+  pair1,
+  pair2
+) {
 
   const ids =
-    a.map(p => p.id);
+    pair1.map(
+      p => p.id
+    );
 
-  return b.some(
-    p => ids.includes(p.id)
+  return pair2.some(
+    p =>
+      ids.includes(p.id)
   );
 
 }
 
 
 /* =========================================================
-   試合表示
+   ★ 試合表示
 ========================================================= */
 
 function renderMatches(
@@ -2152,18 +2736,32 @@ function renderMatches(
 ) {
 
   const result =
-    document.getElementById("matchResult");
+    document.getElementById(
+      "matchResult"
+    );
+
 
   if (!matchList.length) {
 
     result.innerHTML = `
+
       <div class="notice">
-        条件を満たす試合を作成できませんでした。
-        出席者数、男女比、ペアNGなどを確認してください。
+
+        条件を満たす試合を
+        作成できませんでした。
+
+        <br><br>
+
+        男女比、出席人数、
+        ペアNGなどを確認してください。
+
       </div>
+
     `;
 
-    renderStats(appearance);
+    renderStats(
+      appearance
+    );
 
     return;
 
@@ -2171,117 +2769,206 @@ function renderMatches(
 
 
   const courtCount =
-    Number(
-      document.getElementById("courtCount").value
+    Math.max(
+      1,
+      Number(
+        document
+          .getElementById(
+            "courtCount"
+          )
+          .value
+      )
     );
 
 
   /*
-    試合番号をラウンド・コートに変換
-  */
+   * 最終的な出場回数差
+   */
+
+  const active =
+    players.filter(
+      p => p.present
+    );
+
+
+  const values =
+    active.map(
+      p =>
+        appearance[p.id]
+    );
+
+
+  const min =
+    Math.min(...values);
+
+  const max =
+    Math.max(...values);
+
 
   result.innerHTML = `
 
     <div class="success">
 
-      ${matchList.length}試合を作成しました。
+      <strong>
+        ${matchList.length}試合を作成しました。
+      </strong>
+
+      <br>
+
+      出場回数：
+      ${min}〜${max}試合
+
+      ${
+        max - min <= 1
+        ? "（非常に均等）"
+        : "（人数・条件による差があります）"
+      }
 
     </div>
 
-    <div class="match-grid" style="margin-top:15px;">
 
-      ${matchList.map((m,index) => {
+    <div class="match-grid">
 
-        const round =
-          Math.floor(index / courtCount) + 1;
+      ${matchList.map(
+        (match,index) => {
 
-        const court =
-          (index % courtCount) + 1;
+          const round =
+            Math.floor(
+              index /
+              courtCount
+            ) + 1;
 
-        const skill1 =
-          m.pair1.reduce(
-            (s,p) => s+p.skill,
-            0
-          );
+          const court =
+            (
+              index %
+              courtCount
+            ) + 1;
 
-        const skill2 =
-          m.pair2.reduce(
-            (s,p) => s+p.skill,
-            0
-          );
 
-        return `
+          const skill1 =
+            match.pair1.reduce(
+              (sum,p) =>
+                sum + p.skill,
+              0
+            );
 
-        <div class="match">
 
-          <div class="match-title">
+          const skill2 =
+            match.pair2.reduce(
+              (sum,p) =>
+                sum + p.skill,
+              0
+            );
 
-            第${round}ラウンド　
-            ${court}コート
+
+          return `
+
+          <div class="match">
+
+            <div class="match-title">
+
+              第${round}ラウンド
+              ・${court}コート
+
+            </div>
+
+            <div
+              style="
+                font-size:12px;
+                color:#888;
+                margin-bottom:10px;
+              "
+            >
+
+              ${match.type}
+
+            </div>
+
+
+            <div class="pair">
+
+              ${match.pair1.map(
+                p =>
+                  escapeHTML(
+                    p.name
+                  )
+              ).join(" ・ ")}
+
+              <span
+                style="
+                  float:right;
+                  font-weight:bold;
+                "
+              >
+                ${skill1}
+              </span>
+
+            </div>
+
+
+            <div class="match-vs">
+              VS
+            </div>
+
+
+            <div class="pair">
+
+              ${match.pair2.map(
+                p =>
+                  escapeHTML(
+                    p.name
+                  )
+              ).join(" ・ ")}
+
+              <span
+                style="
+                  float:right;
+                  font-weight:bold;
+                "
+              >
+                ${skill2}
+              </span>
+
+            </div>
 
           </div>
 
-          <div style="font-size:12px;color:#888;margin-bottom:8px;">
-            ${m.type}
-          </div>
+          `;
 
-          <div class="pair">
-
-            ${m.pair1.map(p =>
-              escapeHTML(p.name)
-            ).join(" ・ ")}
-
-            <span style="float:right;">
-              ${skill1}
-            </span>
-
-          </div>
-
-          <div class="match-vs">
-            VS
-          </div>
-
-          <div class="pair">
-
-            ${m.pair2.map(p =>
-              escapeHTML(p.name)
-            ).join(" ・ ")}
-
-            <span style="float:right;">
-              ${skill2}
-            </span>
-
-          </div>
-
-        </div>
-
-        `;
-
-      }).join("")}
+        }
+      ).join("")}
 
     </div>
+
   `;
 
 
-  renderStats(appearance);
+  renderStats(
+    appearance
+  );
 
 }
 
 
 /* =========================================================
-   出場回数
+   出場回数表示
 ========================================================= */
 
-function renderStats(appearance) {
+function renderStats(
+  appearance
+) {
 
   const result =
-    document.getElementById("statsResult");
+    document.getElementById(
+      "statsResult"
+    );
+
 
   if (!appearance) {
 
     result.innerHTML =
       `<div class="empty">
-        まだ試合が作成されていません。
+        まだ試合がありません。
       </div>`;
 
     return;
@@ -2291,81 +2978,158 @@ function renderStats(appearance) {
 
   const active =
     players
-      .filter(p => p.present)
+      .filter(
+        p => p.present
+      )
       .sort(
         (a,b) =>
-          (appearance[b.id] || 0)
-          -
-          (appearance[a.id] || 0)
+          appearance[a.id] -
+          appearance[b.id]
       );
+
+
+  const counts =
+    active.map(
+      p =>
+        appearance[p.id]
+    );
+
+
+  const min =
+    Math.min(...counts);
+
+  const max =
+    Math.max(...counts);
 
 
   result.innerHTML = `
 
-    <div class="table-wrap">
+    <div class="summary">
 
-    <table class="stat-table">
+      <div class="summary-box">
 
-      <thead>
+        <div>
+          最少
+        </div>
 
-        <tr>
+        <div class="summary-number">
+          ${min}
+        </div>
 
-          <th>氏名</th>
-          <th>学年</th>
-          <th>能力</th>
-          <th>出場回数</th>
+        <div>
+          試合
+        </div>
 
-        </tr>
+      </div>
 
-      </thead>
 
-      <tbody>
+      <div class="summary-box">
 
-        ${active.map(p => `
+        <div>
+          最多
+        </div>
 
-          <tr>
+        <div class="summary-number">
+          ${max}
+        </div>
 
-            <td>
-              ${escapeHTML(p.name)}
-            </td>
+        <div>
+          試合
+        </div>
 
-            <td>
-              ${gradeText(p.grade)}
-            </td>
+      </div>
 
-            <td>
-              ${p.skill}
-            </td>
 
-            <td>
-              <strong>
-                ${appearance[p.id] || 0}
-              </strong>
-            </td>
+      <div class="summary-box">
 
-          </tr>
+        <div>
+          最大差
+        </div>
 
-        `).join("")}
+        <div class="summary-number">
+          ${max - min}
+        </div>
 
-      </tbody>
+        <div>
+          試合
+        </div>
 
-    </table>
+      </div>
 
     </div>
+
+
+    <div class="table-wrap">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>氏名</th>
+            <th>学年</th>
+            <th>能力</th>
+            <th>出場回数</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          ${active.map(
+            p => `
+
+            <tr>
+
+              <td>
+                ${escapeHTML(p.name)}
+              </td>
+
+              <td>
+                ${gradeText(p.grade)}
+              </td>
+
+              <td>
+                ${p.skill}
+              </td>
+
+              <td
+                class="${
+                  appearance[p.id] === min
+                    ? "stat-good"
+                    : ""
+                }"
+              >
+
+                ${appearance[p.id]}
+
+              </td>
+
+            </tr>
+
+          `
+          ).join("")}
+
+        </tbody>
+
+      </table>
+
+    </div>
+
   `;
 
 }
 
 
 /* =========================================================
-   データ書き出し
+   データ保存
 ========================================================= */
 
 function exportData() {
 
   const data = {
 
-    version: 1,
+    version: 2,
 
     players,
 
@@ -2373,7 +3137,7 @@ function exportData() {
 
     doubleNG,
 
-    exportedAt:
+    savedAt:
       new Date().toISOString()
 
   };
@@ -2389,16 +3153,23 @@ function exportData() {
         )
       ],
       {
-        type: "application/json"
+        type:
+          "application/json"
       }
     );
 
 
   const url =
-    URL.createObjectURL(blob);
+    URL.createObjectURL(
+      blob
+    );
+
 
   const a =
-    document.createElement("a");
+    document.createElement(
+      "a"
+    );
+
 
   a.href = url;
 
@@ -2407,7 +3178,10 @@ function exportData() {
 
   a.click();
 
-  URL.revokeObjectURL(url);
+
+  URL.revokeObjectURL(
+    url
+  );
 
 }
 
@@ -2428,84 +3202,270 @@ function importData(event) {
     new FileReader();
 
 
-  reader.onload = function(e) {
+  reader.onload =
+    function(e) {
 
-    try {
+      try {
 
-      const data =
-        JSON.parse(e.target.result);
+        const data =
+          JSON.parse(
+            e.target.result
+          );
 
 
-      if (
-        !Array.isArray(data.players)
-      ) {
+        if (
+          !Array.isArray(
+            data.players
+          )
+        ) {
 
-        throw new Error();
+          throw new Error();
+
+        }
+
+
+        players =
+          data.players || [];
+
+        teamNG =
+          data.teamNG || [];
+
+        doubleNG =
+          data.doubleNG || [];
+
+
+        saveData();
+
+        renderMembers();
+
+        renderNGLists();
+
+
+        alert(
+          "データを復元しました。"
+        );
+
+
+      } catch(error) {
+
+        alert(
+          "データの読み込みに失敗しました。"
+        );
 
       }
 
-
-      players =
-        data.players || [];
-
-      teamNG =
-        data.teamNG || [];
-
-      doubleNG =
-        data.doubleNG || [];
+    };
 
 
-      saveData();
-
-      renderMembers();
-
-      renderNGLists();
-
-
-      alert("データを復元しました。");
-
-
-    } catch(e) {
-
-      alert(
-        "データの読み込みに失敗しました。"
-      );
-
-    }
-
-  };
-
-
-  reader.readAsText(file);
+  reader.readAsText(
+    file
+  );
 
 }
 
 
 /* =========================================================
-   補助
+   UI補助
 ========================================================= */
 
-function gradeText(grade) {
+function playerOptions(
+  selected
+) {
 
-  return grade === 1
-    ? "1回生"
-    : grade === 2
-    ? "2回生"
-    : grade === 3
-    ? "3回生"
-    : "4回生以上";
+  return players.map(
+    p => `
+
+      <option
+        value="${p.id}"
+        ${
+          p.id === selected
+            ? "selected"
+            : ""
+        }
+      >
+
+        ${escapeHTML(p.name)}
+
+      </option>
+
+    `
+  ).join("");
 
 }
 
 
-function escapeHTML(str) {
+function gradeOptions(
+  selected
+) {
 
-  return String(str)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
+  return `
+
+    <option
+      value="1"
+      ${selected === 1 ? "selected" : ""}>
+      1回生
+    </option>
+
+    <option
+      value="2"
+      ${selected === 2 ? "selected" : ""}>
+      2回生
+    </option>
+
+    <option
+      value="3"
+      ${selected === 3 ? "selected" : ""}>
+      3回生
+    </option>
+
+    <option
+      value="4"
+      ${selected === 4 ? "selected" : ""}>
+      4回生以上
+    </option>
+
+  `;
+
+}
+
+
+function skillOptions(
+  selected
+) {
+
+  return Array
+    .from(
+      {
+        length: 10
+      },
+      (_,i) => i + 1
+    )
+    .map(
+      value => `
+
+        <option
+          value="${value}"
+          ${
+            selected === value
+              ? "selected"
+              : ""
+          }
+        >
+          ${value}
+        </option>
+
+      `
+    )
+    .join("");
+
+}
+
+
+function gradeText(
+  grade
+) {
+
+  if (grade === 1)
+    return "1回生";
+
+  if (grade === 2)
+    return "2回生";
+
+  if (grade === 3)
+    return "3回生";
+
+  return "4回生以上";
+
+}
+
+
+/* =========================================================
+   ランダム
+========================================================= */
+
+function shuffle(array) {
+
+  const result =
+    [...array];
+
+
+  for (
+    let i =
+      result.length - 1;
+    i > 0;
+    i--
+  ) {
+
+    const j =
+      Math.floor(
+        Math.random() *
+        (i + 1)
+      );
+
+
+    [
+      result[i],
+      result[j]
+    ] =
+    [
+      result[j],
+      result[i]
+    ];
+
+  }
+
+
+  return result;
+
+}
+
+
+/* =========================================================
+   ID
+========================================================= */
+
+function createID() {
+
+  return (
+    Date.now().toString(36)
+    +
+    Math.random()
+      .toString(36)
+      .substring(2)
+  );
+
+}
+
+
+/* =========================================================
+   HTMLエスケープ
+========================================================= */
+
+function escapeHTML(
+  value
+) {
+
+  return String(value)
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+    .replace(
+      /</g,
+      "&lt;"
+    )
+    .replace(
+      />/g,
+      "&gt;"
+    )
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+    .replace(
+      /'/g,
+      "&#039;"
+    );
 
 }
 
